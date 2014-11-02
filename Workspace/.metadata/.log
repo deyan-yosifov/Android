@@ -1,0 +1,627 @@
+!SESSION 2014-11-02 01:05:04.289 -----------------------------------------------
+eclipse.buildId=M20130204-1200
+java.version=1.7.0_67
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product com.android.ide.eclipse.adt.package.adtproduct
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product com.android.ide.eclipse.adt.package.adtproduct
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2014-11-02 01:34:37.498
+!MESSAGE Failed to load properties file for project 'FallingRocks'
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-11-02 01:34:38.795
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-11-02 01:34:38.795
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Deyan'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY com.android.ide.eclipse.adt 2 0 2014-11-02 01:34:46.368
+!MESSAGE Failed to render set of icons for AnalogClock, AutoCompleteTextView, Button, SmallButton, CheckBox, CheckedTextView, DigitalClock, PlainText, Password, PasswordNumeric, PersonName, Phone, PostalAddress, MultilineText, Date, Time, Email, Number, NumberSigned, NumberDecimal, LargeText, MediumText, SmallText, MultiAutoCompleteTextView, ProgressBarNormal, ProgressBarHorizontal, ProgressBarLarge, ProgressBarSmall, QuickContactBadge, RadioButton, RatingBar, SeekBar, ListView, ExpandableListView, Spinner, TextView, ToggleButton, ZoomButton, ZoomControls, CalendarView, RadioGroup
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2014-11-02 01:34:46.368
+!MESSAGE java.lang.System.arraycopy([CI[CII)V
+!STACK 0
+java.lang.NoSuchMethodError: java.lang.System.arraycopy([CI[CII)V
+	at android.text.SpannableStringBuilder.getChars(SpannableStringBuilder.java:916)
+	at android.text.TextUtils.getChars(TextUtils.java:79)
+	at android.text.SpannableStringBuilder.<init>(SpannableStringBuilder.java:61)
+	at android.text.SpannableStringBuilder.<init>(SpannableStringBuilder.java:44)
+	at android.text.Editable$Factory.newEditable(Editable.java:139)
+	at android.widget.TextView.setText(TextView.java:3729)
+	at android.widget.TextView.setText(TextView.java:3671)
+	at android.widget.EditText.setText(EditText.java:80)
+	at android.widget.TextView.setText(TextView.java:3646)
+	at android.widget.TextView.setTransformationMethod(TextView.java:1724)
+	at android.widget.TextView.<init>(TextView.java:1250)
+	at android.widget.EditText.<init>(EditText.java:60)
+	at android.widget.EditText.<init>(EditText.java:56)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at android.view.LayoutInflater.createView(LayoutInflater.java:594)
+	at android.view.BridgeInflater.onCreateView(BridgeInflater.java:82)
+	at android.view.LayoutInflater.onCreateView(LayoutInflater.java:669)
+	at android.view.LayoutInflater.createViewFromTag(LayoutInflater.java:694)
+	at android.view.BridgeInflater.createViewFromTag(BridgeInflater.java:127)
+	at android.view.LayoutInflater.rInflate_Original(LayoutInflater.java:755)
+	at android.view.LayoutInflater_Delegate.rInflate(LayoutInflater_Delegate.java:64)
+	at android.view.LayoutInflater.rInflate(LayoutInflater.java:727)
+	at android.view.LayoutInflater.inflate(LayoutInflater.java:492)
+	at android.view.LayoutInflater.inflate(LayoutInflater.java:373)
+	at com.android.layoutlib.bridge.impl.RenderSessionImpl.inflate(RenderSessionImpl.java:393)
+	at com.android.layoutlib.bridge.Bridge.createSession(Bridge.java:337)
+	at com.android.ide.common.rendering.LayoutLibrary.createSession(LayoutLibrary.java:332)
+	at com.android.ide.eclipse.adt.internal.editors.layout.gle2.RenderService.createRenderSession(RenderService.java:517)
+	at com.android.ide.eclipse.adt.internal.editors.layout.gle2.PreviewIconFactory.render(PreviewIconFactory.java:273)
+	at com.android.ide.eclipse.adt.internal.editors.layout.gle2.PreviewIconFactory.initColors(PreviewIconFactory.java:595)
+	at com.android.ide.eclipse.adt.internal.editors.layout.gle2.PreviewIconFactory.getBackgroundColor(PreviewIconFactory.java:570)
+	at com.android.ide.eclipse.adt.internal.editors.layout.gle2.PaletteControl.reloadPalette(PaletteControl.java:437)
+	at com.android.ide.eclipse.adt.internal.editors.layout.gle2.GraphicalEditorPart.reloadPalette(GraphicalEditorPart.java:1327)
+	at com.android.ide.eclipse.adt.internal.editors.layout.gle2.GraphicalEditorPart.changed(GraphicalEditorPart.java:771)
+	at com.android.ide.eclipse.adt.internal.editors.layout.gle2.GraphicalEditorPart.onTargetChange(GraphicalEditorPart.java:1196)
+	at com.android.ide.eclipse.adt.internal.editors.layout.LayoutEditorDelegate.onDescriptorsChanged(LayoutEditorDelegate.java:916)
+	at com.android.ide.eclipse.adt.internal.editors.layout.LayoutEditorDelegate.delegateInitUiRootNode(LayoutEditorDelegate.java:835)
+	at com.android.ide.eclipse.adt.internal.editors.layout.gle2.GraphicalEditorPart$TargetListener.updateEditor(GraphicalEditorPart.java:953)
+	at com.android.ide.eclipse.adt.internal.editors.layout.gle2.GraphicalEditorPart$TargetListener.onTargetLoaded(GraphicalEditorPart.java:917)
+	at com.android.ide.eclipse.adt.AdtPlugin$11.run(AdtPlugin.java:1749)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:135)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4144)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3761)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1053)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:942)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:86)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:588)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:543)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:124)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:353)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:180)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:629)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2014-11-02 01:34:47.529
+!MESSAGE activity_main.xml: Failed to parse file D:\Programs\adt-bundle-windows-x86_64-20140702\sdk\platforms\android-20\data\res\drawable\item_background_holo_dark.xml
+!STACK 0
+java.lang.NullPointerException
+	at android.graphics.Paint_Delegate.reset(Paint_Delegate.java:1112)
+	at android.graphics.Paint_Delegate.<init>(Paint_Delegate.java:1075)
+	at android.graphics.Paint_Delegate.native_init(Paint_Delegate.java:646)
+	at android.graphics.Paint.native_init(Paint.java)
+	at android.graphics.Paint.<init>(Paint.java:446)
+	at android.graphics.Paint.<init>(Paint.java:436)
+	at android.graphics.drawable.ColorDrawable.<init>(ColorDrawable.java:40)
+	at android.graphics.drawable.ColorDrawable.<init>(ColorDrawable.java:56)
+	at com.android.layoutlib.bridge.impl.ResourceHelper.getDrawable(ResourceHelper.java:252)
+	at android.content.res.BridgeResources.getDrawable(BridgeResources.java:160)
+	at android.graphics.drawable.StateListDrawable.inflate(StateListDrawable.java:176)
+	at android.graphics.drawable.Drawable.createFromXmlInner(Drawable.java:937)
+	at android.graphics.drawable.Drawable.createFromXml(Drawable.java:877)
+	at com.android.layoutlib.bridge.impl.ResourceHelper.getDrawable(ResourceHelper.java:211)
+	at android.content.res.BridgeTypedArray.getDrawable(BridgeTypedArray.java:782)
+	at android.view.View.<init>(View.java:3566)
+	at android.widget.ImageView.<init>(ImageView.java:123)
+	at android.widget.ImageButton.<init>(ImageButton.java:87)
+	at com.android.internal.view.menu.ActionMenuPresenter$OverflowMenuButton.<init>(ActionMenuPresenter.java:590)
+	at com.android.internal.view.menu.ActionMenuPresenter.initForMenu(ActionMenuPresenter.java:105)
+	at com.android.internal.view.menu.MenuBuilder.addMenuPresenter(MenuBuilder.java:216)
+	at com.android.internal.widget.ActionBarView.configPresenters(ActionBarView.java:452)
+	at com.android.internal.widget.ActionBarView.setMenu(ActionBarView.java:417)
+	at com.android.layoutlib.bridge.bars.ActionBarLayout.inflateMenus(ActionBarLayout.java:194)
+	at com.android.layoutlib.bridge.bars.ActionBarLayout.setupActionBar(ActionBarLayout.java:172)
+	at com.android.layoutlib.bridge.bars.ActionBarLayout.<init>(ActionBarLayout.java:128)
+	at com.android.layoutlib.bridge.impl.RenderSessionImpl.createActionBar(RenderSessionImpl.java:1618)
+	at com.android.layoutlib.bridge.impl.RenderSessionImpl.inflate(RenderSessionImpl.java:351)
+	at com.android.layoutlib.bridge.Bridge.createSession(Bridge.java:337)
+	at com.android.ide.common.rendering.LayoutLibrary.createSession(LayoutLibrary.java:332)
+	at com.android.ide.eclipse.adt.internal.editors.layout.gle2.RenderService.createRenderSession(RenderService.java:517)
+	at com.android.ide.eclipse.adt.internal.editors.layout.gle2.GraphicalEditorPart.renderWithBridge(GraphicalEditorPart.java:1584)
+	at com.android.ide.eclipse.adt.internal.editors.layout.gle2.GraphicalEditorPart.recomputeLayout(GraphicalEditorPart.java:1309)
+	at com.android.ide.eclipse.adt.internal.editors.layout.gle2.GraphicalEditorPart$ReloadListener.reloadLayoutSwt(GraphicalEditorPart.java:1817)
+	at com.android.ide.eclipse.adt.internal.editors.layout.gle2.GraphicalEditorPart$ReloadListener.access$0(GraphicalEditorPart.java:1755)
+	at com.android.ide.eclipse.adt.internal.editors.layout.gle2.GraphicalEditorPart$ReloadListener$1.run(GraphicalEditorPart.java:1749)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:135)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4144)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3761)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1053)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:942)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:86)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:588)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:543)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:124)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:353)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:180)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:629)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2014-11-02 01:34:47.529
+!MESSAGE activity_main.xml: Failed to parse file D:\Programs\adt-bundle-windows-x86_64-20140702\sdk\platforms\android-20\data\res\drawable\ic_menu_moreoverflow_holo_dark.xml
+!STACK 0
+java.lang.NullPointerException
+	at android.graphics.Paint_Delegate.reset(Paint_Delegate.java:1112)
+	at android.graphics.Paint_Delegate.<init>(Paint_Delegate.java:1075)
+	at android.graphics.Paint_Delegate.native_init(Paint_Delegate.java:646)
+	at android.graphics.Paint.native_init(Paint.java)
+	at android.graphics.Paint.<init>(Paint.java:446)
+	at android.graphics.drawable.BitmapDrawable$BitmapState.<init>(BitmapDrawable.java:638)
+	at android.graphics.drawable.BitmapDrawable.<init>(BitmapDrawable.java:120)
+	at com.android.layoutlib.bridge.impl.ResourceHelper.getDrawable(ResourceHelper.java:242)
+	at android.content.res.BridgeResources.getDrawable(BridgeResources.java:160)
+	at android.graphics.drawable.StateListDrawable.inflate(StateListDrawable.java:176)
+	at android.graphics.drawable.Drawable.createFromXmlInner(Drawable.java:937)
+	at android.graphics.drawable.Drawable.createFromXml(Drawable.java:877)
+	at com.android.layoutlib.bridge.impl.ResourceHelper.getDrawable(ResourceHelper.java:211)
+	at android.content.res.BridgeTypedArray.getDrawable(BridgeTypedArray.java:782)
+	at android.widget.ImageView.<init>(ImageView.java:129)
+	at android.widget.ImageButton.<init>(ImageButton.java:87)
+	at com.android.internal.view.menu.ActionMenuPresenter$OverflowMenuButton.<init>(ActionMenuPresenter.java:590)
+	at com.android.internal.view.menu.ActionMenuPresenter.initForMenu(ActionMenuPresenter.java:105)
+	at com.android.internal.view.menu.MenuBuilder.addMenuPresenter(MenuBuilder.java:216)
+	at com.android.internal.widget.ActionBarView.configPresenters(ActionBarView.java:452)
+	at com.android.internal.widget.ActionBarView.setMenu(ActionBarView.java:417)
+	at com.android.layoutlib.bridge.bars.ActionBarLayout.inflateMenus(ActionBarLayout.java:194)
+	at com.android.layoutlib.bridge.bars.ActionBarLayout.setupActionBar(ActionBarLayout.java:172)
+	at com.android.layoutlib.bridge.bars.ActionBarLayout.<init>(ActionBarLayout.java:128)
+	at com.android.layoutlib.bridge.impl.RenderSessionImpl.createActionBar(RenderSessionImpl.java:1618)
+	at com.android.layoutlib.bridge.impl.RenderSessionImpl.inflate(RenderSessionImpl.java:351)
+	at com.android.layoutlib.bridge.Bridge.createSession(Bridge.java:337)
+	at com.android.ide.common.rendering.LayoutLibrary.createSession(LayoutLibrary.java:332)
+	at com.android.ide.eclipse.adt.internal.editors.layout.gle2.RenderService.createRenderSession(RenderService.java:517)
+	at com.android.ide.eclipse.adt.internal.editors.layout.gle2.GraphicalEditorPart.renderWithBridge(GraphicalEditorPart.java:1584)
+	at com.android.ide.eclipse.adt.internal.editors.layout.gle2.GraphicalEditorPart.recomputeLayout(GraphicalEditorPart.java:1309)
+	at com.android.ide.eclipse.adt.internal.editors.layout.gle2.GraphicalEditorPart$ReloadListener.reloadLayoutSwt(GraphicalEditorPart.java:1817)
+	at com.android.ide.eclipse.adt.internal.editors.layout.gle2.GraphicalEditorPart$ReloadListener.access$0(GraphicalEditorPart.java:1755)
+	at com.android.ide.eclipse.adt.internal.editors.layout.gle2.GraphicalEditorPart$ReloadListener$1.run(GraphicalEditorPart.java:1749)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:135)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4144)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3761)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1053)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:942)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:86)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:588)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:543)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:124)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:353)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:180)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:629)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2014-11-02 01:34:47.545
+!MESSAGE activity_main.xml: java.lang.NullPointerException
+!STACK 0
+java.lang.NullPointerException
+	at android.graphics.Paint_Delegate.reset(Paint_Delegate.java:1112)
+	at android.graphics.Paint_Delegate.<init>(Paint_Delegate.java:1075)
+	at android.graphics.Paint_Delegate.native_init(Paint_Delegate.java:646)
+	at android.graphics.Paint.native_init(Paint.java)
+	at android.graphics.Paint.<init>(Paint.java:446)
+	at android.text.TextPaint.<init>(TextPaint.java:49)
+	at android.widget.TextView.<init>(TextView.java:629)
+	at android.widget.TextView.<init>(TextView.java:618)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at android.view.LayoutInflater.createView(LayoutInflater.java:594)
+	at android.view.BridgeInflater.onCreateView(BridgeInflater.java:82)
+	at android.view.LayoutInflater.onCreateView(LayoutInflater.java:669)
+	at android.view.LayoutInflater.createViewFromTag(LayoutInflater.java:694)
+	at android.view.BridgeInflater.createViewFromTag(BridgeInflater.java:127)
+	at android.view.LayoutInflater.rInflate_Original(LayoutInflater.java:755)
+	at android.view.LayoutInflater_Delegate.rInflate(LayoutInflater_Delegate.java:64)
+	at android.view.LayoutInflater.rInflate(LayoutInflater.java:727)
+	at android.view.LayoutInflater.inflate(LayoutInflater.java:492)
+	at android.view.LayoutInflater.inflate(LayoutInflater.java:373)
+	at com.android.layoutlib.bridge.impl.RenderSessionImpl.inflate(RenderSessionImpl.java:393)
+	at com.android.layoutlib.bridge.Bridge.createSession(Bridge.java:337)
+	at com.android.ide.common.rendering.LayoutLibrary.createSession(LayoutLibrary.java:332)
+	at com.android.ide.eclipse.adt.internal.editors.layout.gle2.RenderService.createRenderSession(RenderService.java:517)
+	at com.android.ide.eclipse.adt.internal.editors.layout.gle2.GraphicalEditorPart.renderWithBridge(GraphicalEditorPart.java:1584)
+	at com.android.ide.eclipse.adt.internal.editors.layout.gle2.GraphicalEditorPart.recomputeLayout(GraphicalEditorPart.java:1309)
+	at com.android.ide.eclipse.adt.internal.editors.layout.gle2.GraphicalEditorPart$ReloadListener.reloadLayoutSwt(GraphicalEditorPart.java:1817)
+	at com.android.ide.eclipse.adt.internal.editors.layout.gle2.GraphicalEditorPart$ReloadListener.access$0(GraphicalEditorPart.java:1755)
+	at com.android.ide.eclipse.adt.internal.editors.layout.gle2.GraphicalEditorPart$ReloadListener$1.run(GraphicalEditorPart.java:1749)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:135)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4144)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3761)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1053)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:942)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:86)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:588)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:543)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:124)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:353)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:180)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:629)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+
+!ENTRY org.eclipse.ui 2 2 2014-11-02 01:38:48.078
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
+
+!ENTRY org.eclipse.ui 4 4 2014-11-02 03:01:48.949
+!MESSAGE Referenced part does not exist yet: org.eclipse.ui.views.ProblemView.
+!SESSION 2014-11-02 14:53:31.544 -----------------------------------------------
+eclipse.buildId=M20130204-1200
+java.version=1.7.0_67
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product com.android.ide.eclipse.adt.package.adtproduct
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product com.android.ide.eclipse.adt.package.adtproduct
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-11-02 14:53:48.465
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-11-02 14:53:48.527
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Deyan'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY com.android.ide.eclipse.adt 4 4 2014-11-02 14:53:50.059
+!MESSAGE Failed
+!STACK 0
+java.lang.NullPointerException
+	at com.android.ide.eclipse.adt.internal.lint.EclipseLintClient.getTargets(EclipseLintClient.java:916)
+	at com.android.tools.lint.detector.api.Project.readManifest(Project.java:652)
+	at com.android.tools.lint.client.api.LintDriver.runFileDetectors(LintDriver.java:946)
+	at com.android.tools.lint.client.api.LintDriver.checkProject(LintDriver.java:880)
+	at com.android.tools.lint.client.api.LintDriver.analyze(LintDriver.java:431)
+	at com.android.tools.lint.client.api.LintDriver.analyze(LintDriver.java:374)
+	at com.android.ide.eclipse.adt.internal.lint.LintJob.run(LintJob.java:163)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.ui 2 2 2014-11-02 16:01:53.073
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
+
+!ENTRY org.eclipse.jface 2 0 2014-11-02 16:08:03.230
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-11-02 16:08:03.230
+!MESSAGE A conflict occurred for CTRL+I:
+Binding(CTRL+I,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.indent,Correct Indentation,
+		Corrects the indentation of the selected lines,
+		Category(org.eclipse.jdt.ui.category.source,Source,Java Source Actions,true),
+		org.eclipse.ui.internal.MakeHandlersGo@1ce4c0a,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.jdt.ui.javaEditorScope,,,system)
+Binding(CTRL+I,
+	ParameterizedCommand(Command(org.eclipse.wst.sse.ui.format.active.elements,Format Active Elements,
+		Format active elements,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@3761d803,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-11-02 16:08:03.230
+!MESSAGE A conflict occurred for CTRL+SHIFT+F:
+Binding(CTRL+SHIFT+F,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.format,Format,
+		Format the selected text,
+		Category(org.eclipse.jdt.ui.category.source,Source,Java Source Actions,true),
+		org.eclipse.ui.internal.MakeHandlersGo@1a6145a1,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.jdt.ui.javaEditorScope,,,system)
+Binding(CTRL+SHIFT+F,
+	ParameterizedCommand(Command(org.eclipse.wst.sse.ui.format.document,Format,
+		Format selection,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@68539351,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-11-02 16:08:03.230
+!MESSAGE A conflict occurred for CTRL+SHIFT+ARROW_DOWN:
+Binding(CTRL+SHIFT+ARROW_DOWN,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.goto.next.member,Go to Next Member,
+		Move the caret to the next member of the compilation unit,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@68225a8e,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.jdt.ui.javaEditorScope,,,system)
+Binding(CTRL+SHIFT+ARROW_DOWN,
+	ParameterizedCommand(Command(org.eclipse.wst.xml.ui.nextSibling,Next Sibling,
+		Go to Next Sibling,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@5892a0d8,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-11-02 16:08:03.230
+!MESSAGE A conflict occurred for ALT+SHIFT+ARROW_LEFT:
+Binding(ALT+SHIFT+ARROW_LEFT,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.select.previous,Select Previous Element,
+		Expand selection to include previous sibling,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@2767560b,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.jdt.ui.javaEditorScope,,,system)
+Binding(ALT+SHIFT+ARROW_LEFT,
+	ParameterizedCommand(Command(org.eclipse.wst.sse.ui.structure.select.previous,Select Previous Element,
+		Expand selection to include previous sibling,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@1c4c5fee,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-11-02 16:08:03.230
+!MESSAGE A conflict occurred for ALT+SHIFT+ARROW_UP:
+Binding(ALT+SHIFT+ARROW_UP,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.select.enclosing,Select Enclosing Element,
+		Expand selection to include enclosing element,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@34d630a9,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.jdt.ui.javaEditorScope,,,system)
+Binding(ALT+SHIFT+ARROW_UP,
+	ParameterizedCommand(Command(org.eclipse.wst.sse.ui.structure.select.enclosing,Select Enclosing Element,
+		Expand selection to include enclosing element,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@17800793,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-11-02 16:08:03.230
+!MESSAGE A conflict occurred for CTRL+SHIFT+P:
+Binding(CTRL+SHIFT+P,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.goto.matching.bracket,Go to Matching Bracket,
+		Moves the cursor to the matching bracket,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@5a14c258,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.jdt.ui.javaEditorScope,,,system)
+Binding(CTRL+SHIFT+P,
+	ParameterizedCommand(Command(org.eclipse.wst.sse.ui.goto.matching.bracket,Matching Bracket,
+		Go to Matching Bracket,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@a88cdff,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-11-02 16:08:03.230
+!MESSAGE A conflict occurred for CTRL+SHIFT+/:
+Binding(CTRL+SHIFT+/,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.add.block.comment,Add Block Comment,
+		Enclose the selection with a block comment,
+		Category(org.eclipse.jdt.ui.category.source,Source,Java Source Actions,true),
+		org.eclipse.ui.internal.MakeHandlersGo@8e34d9c,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.jdt.ui.javaEditorScope,,,system)
+Binding(CTRL+SHIFT+/,
+	ParameterizedCommand(Command(org.eclipse.wst.sse.ui.add.block.comment,Add Block Comment,
+		Add Block Comment,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@1934433,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-11-02 16:08:03.231
+!MESSAGE A conflict occurred for CTRL+O:
+Binding(CTRL+O,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.show.outline,Quick Outline,
+		Show the quick outline for the editor input,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@2fc4153,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.jdt.ui.javaEditorScope,,,system)
+Binding(CTRL+O,
+	ParameterizedCommand(Command(org.eclipse.wst.sse.ui.quick_outline,Quick Outline,
+		Show the quick outline for the editor input,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@7f24b1ac,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-11-02 16:08:03.231
+!MESSAGE A conflict occurred for CTRL+SHIFT+ARROW_UP:
+Binding(CTRL+SHIFT+ARROW_UP,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.goto.previous.member,Go to Previous Member,
+		Move the caret to the previous member of the compilation unit,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@420cd46a,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.jdt.ui.javaEditorScope,,,system)
+Binding(CTRL+SHIFT+ARROW_UP,
+	ParameterizedCommand(Command(org.eclipse.wst.xml.ui.previousSibling,Previous Sibling,
+		Go to Previous Sibling,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@367c2f9f,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-11-02 16:08:03.231
+!MESSAGE A conflict occurred for ALT+SHIFT+ARROW_DOWN:
+Binding(ALT+SHIFT+ARROW_DOWN,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.select.last,Restore Last Selection,
+		Restore last selection,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@584d9d06,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.jdt.ui.javaEditorScope,,,system)
+Binding(ALT+SHIFT+ARROW_DOWN,
+	ParameterizedCommand(Command(org.eclipse.wst.sse.ui.structure.select.last,Restore Last Selection,
+		Restore last selection,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@1a427f71,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-11-02 16:08:03.231
+!MESSAGE A conflict occurred for CTRL+SHIFT+C:
+Binding(CTRL+SHIFT+C,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.toggle.comment,Toggle Comment,
+		Toggle comment the selected lines,
+		Category(org.eclipse.jdt.ui.category.source,Source,Java Source Actions,true),
+		org.eclipse.ui.internal.MakeHandlersGo@4f802234,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.jdt.ui.javaEditorScope,,,system)
+Binding(CTRL+SHIFT+C,
+	ParameterizedCommand(Command(org.eclipse.wst.sse.ui.toggle.comment,Toggle Comment,
+		Toggle Comment,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@1435e7c5,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-11-02 16:08:03.231
+!MESSAGE A conflict occurred for ALT+SHIFT+ARROW_RIGHT:
+Binding(ALT+SHIFT+ARROW_RIGHT,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.select.next,Select Next Element,
+		Expand selection to include next sibling,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@6545acb2,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.jdt.ui.javaEditorScope,,,system)
+Binding(ALT+SHIFT+ARROW_RIGHT,
+	ParameterizedCommand(Command(org.eclipse.wst.sse.ui.structure.select.next,Select Next Element,
+		Expand selection to include next sibling,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@9bec0d4,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-11-02 16:08:03.231
+!MESSAGE A conflict occurred for CTRL+SHIFT+\:
+Binding(CTRL+SHIFT+\,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.remove.block.comment,Remove Block Comment,
+		Remove the block comment enclosing the selection,
+		Category(org.eclipse.jdt.ui.category.source,Source,Java Source Actions,true),
+		org.eclipse.ui.internal.MakeHandlersGo@414d0e0f,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.jdt.ui.javaEditorScope,,,system)
+Binding(CTRL+SHIFT+\,
+	ParameterizedCommand(Command(org.eclipse.wst.sse.ui.remove.block.comment,Remove Block Comment,
+		Remove Block Comment,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@62343903,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,,system)
+!SESSION 2014-11-02 18:06:47.812 -----------------------------------------------
+eclipse.buildId=M20130204-1200
+java.version=1.7.0_67
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product com.android.ide.eclipse.adt.package.adtproduct
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product com.android.ide.eclipse.adt.package.adtproduct
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-11-02 18:06:52.500
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-11-02 18:06:52.500
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Deyan'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.ui 2 2 2014-11-02 18:54:57.923
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
+!SESSION 2014-11-02 21:26:15.846 -----------------------------------------------
+eclipse.buildId=M20130204-1200
+java.version=1.7.0_67
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product com.android.ide.eclipse.adt.package.adtproduct
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product com.android.ide.eclipse.adt.package.adtproduct
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-11-02 21:26:20.672
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-11-02 21:26:20.672
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Deyan'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.ui 2 2 2014-11-02 21:26:34.429
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
