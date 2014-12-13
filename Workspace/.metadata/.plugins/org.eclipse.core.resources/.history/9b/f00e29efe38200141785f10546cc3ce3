@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Falling Rocks</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="welcome_header">Welcome to Falling Rocks game!</string>
+    <string name="button_play_game">Play the game!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_single_player_game">SinglePlayerGameActivity</string>
+
+</resources>

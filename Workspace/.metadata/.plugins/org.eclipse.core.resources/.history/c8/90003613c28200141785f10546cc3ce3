@@ -1,0 +1,7 @@
+package com.dipiuay.fallingrocks;
+
+public class MessageBoxHelper {
+	public static void Alert(String text){
+		
+	}
+}

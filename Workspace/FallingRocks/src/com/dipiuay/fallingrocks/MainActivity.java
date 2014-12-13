@@ -3,6 +3,7 @@ package com.dipiuay.fallingrocks;
 import android.support.v7.app.ActionBarActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -39,20 +40,23 @@ public class MainActivity extends ActionBarActivity {
     
     /** Called when the user clicks the Send button */
     public void startGame(View view) {
-    	new AlertDialog.Builder(this)
-        .setTitle("Falling Games Alert")
-        .setMessage("Are you sure you want to play this stupid game :)?")
-        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) { 
-                // continue with delete
+    	
+    	String question = "Are you sure you want to play this stupid game :)?";
+    	String header = "Play game?";
+    	MessageBoxHelper.Alert(this, question, header, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {                 
+                Intent intent = new Intent(MainActivity.this, SinglePlayerGameActivity.class);
+//                EditText editText = (EditText) findViewById(R.id.edit_message);
+//                String message = editText.getText().toString();
+//                intent.putExtra(EXTRA_MESSAGE, message);
+                startActivity(intent);
             }
-         })
-        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) { 
-                // do nothing
-            }
-         })
-        .setIcon(android.R.drawable.ic_dialog_alert)
-         .show();    	
+         });    	
+    	
     }
+    
+    
+    
+    // TODO:
+    //private void ShowMessage(String text, String header)
 }

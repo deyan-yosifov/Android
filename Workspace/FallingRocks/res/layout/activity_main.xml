@@ -8,7 +8,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.dipiuay.fallingrocks.MainActivity" >
 
-    <TextView        
+    <TextView                
         style="@style/FallingRocksFonts" 
         android:id="@+id/welcome_header_id"  	
         android:text="@string/welcome_header"

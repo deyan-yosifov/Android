@@ -1,0 +1,22 @@
+package com.dipiuay.fallingrocks;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.TextView;
+
+public class SinglePlayerGameActivity extends Activity {
+	
+	private TextView xCoordTextView;
+	private TextView yCoordTextView;
+	private TextView zCoordTextView;
+	private TextView vCoordTextView;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_single_player_game);
+		this.xCoordTextView = (TextView)this.findViewById(R.id.accelerometer_x_coordinate_textView);
+	}
+}
