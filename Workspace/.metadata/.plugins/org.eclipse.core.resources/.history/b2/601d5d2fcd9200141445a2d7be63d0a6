@@ -45,15 +45,10 @@ public class SinglePlayerGameActivity extends Activity {
 		
 		this.sensorManager = (SensorManager) getSystemService(this.SENSOR_SERVICE);
 		List<Sensor> allSensors = this.sensorManager.getSensorList(Sensor.TYPE_ALL);
-		logger.Log("Sensors count = " + allSensors.size());
 		for(Iterator<Sensor> i = allSensors.iterator(); i.hasNext(); ) {
 		    Sensor sensor = i.next();
 		    logger.Log(sensor.getName() + " --- " + sensor.getType());
 		}
-		
-		Sensor acceleromator = this.sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-		logger.Log((acceleromator != null ? "Acceleromator found!" : "No accereromator :("));
-		logger.Log(acceleromator.getName() + "---" + acceleromator.getType());
 	}
 	
 	private void SetAccelerationText(AccelerationDirection direction, double acceleration){
