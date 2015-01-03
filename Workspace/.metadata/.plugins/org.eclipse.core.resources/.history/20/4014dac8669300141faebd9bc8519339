@@ -1,0 +1,96 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+	<LinearLayout
+	    android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:orientation="vertical"
+        android:id="@+id/acceleromatorValues"
+	    >
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:id="@+id/accelerometer_x_coordinate_textView"
+	        android:text="@string/hello_world" />
+	    
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:id="@+id/accelerometer_y_coordinate_textView"
+	        android:text="@string/hello_world" />
+	    
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:id="@+id/accelerometer_z_coordinate_textView"
+	        android:text="@string/hello_world" />
+	</LinearLayout>
+	
+	<LinearLayout 
+	    android:layout_width="wrap_content" 
+        android:layout_height="wrap_content" 
+        android:orientation="vertical"
+        android:id="@+id/gravityValues"
+        android:layout_toRightOf="@id/acceleromatorValues"
+	    >
+		<TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:id="@+id/gravity_x_coordinate_textView"
+	        android:text="@string/hello_world" />
+	    
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:id="@+id/gravity_y_coordinate_textView"
+	        android:text="@string/hello_world" />
+	    
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:id="@+id/gravity_z_coordinate_textView"
+	        android:text="@string/hello_world" />
+	    
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:id="@+id/gravity_length_coordinate_textView"
+	        android:text="@string/hello_world" />
+	</LinearLayout>
+	
+	<LinearLayout
+	    android:layout_width="wrap_content" 
+        android:layout_height="wrap_content" 
+        android:orientation="vertical"
+        android:id="@+id/timeValues"
+        android:layout_toRightOf="@id/gravityValues"
+	    >
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:id="@+id/currentTime_textView"
+	        android:text="@string/hello_world" />
+	    
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:id="@+id/currentDeltaTime_textView"
+	        android:text="@string/hello_world" />
+	    
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:id="@+id/minDeltaTime_coordinate_textView"
+	        android:text="@string/hello_world" />
+	    
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:id="@+id/maxDeltaTime_coordinate_textView"
+	        android:text="@string/hello_world" />
+	</LinearLayout>
+
+</RelativeLayout>

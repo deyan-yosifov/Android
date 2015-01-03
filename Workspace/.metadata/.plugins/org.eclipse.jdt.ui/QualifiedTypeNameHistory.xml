@@ -11,4 +11,5 @@
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="android.hardware.Sensor"/>
 <fullyQualifiedTypeName name="java.util.Iterator"/>
+<fullyQualifiedTypeName name="android.hardware.SensorEventListener"/>
 </qualifiedTypeNameHistroy>
