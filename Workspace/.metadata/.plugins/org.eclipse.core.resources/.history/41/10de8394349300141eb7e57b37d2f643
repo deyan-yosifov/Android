@@ -48,6 +48,7 @@ public class SinglePlayerGameActivity extends Activity implements SensorEventLis
 		
 		this.sensorManager = (SensorManager) getSystemService(this.SENSOR_SERVICE);		
 		this.acceleromatorSensor = this.sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+		this.registerSensors();
 	}
 	
 	

@@ -70,9 +70,6 @@ public class SinglePlayerGameActivity extends Activity implements SensorEventLis
 		if(this.acceleromatorSensor != null){
 			this.sensorManager.registerListener(this, this.acceleromatorSensor, SensorManager.SENSOR_DELAY_NORMAL);
 		}
-		else{
-			MessageBoxHelper.Alert(this, "No acceleromator sensor found!");
-		}
 	}
 	
 	private void unregisterSensors(){
@@ -107,8 +104,7 @@ public class SinglePlayerGameActivity extends Activity implements SensorEventLis
 
 	@Override
 	public void onSensorChanged(SensorEvent event) {
-		this.SetAccelerationText(AccelerationDirection.X, event.values[0]);
-		this.SetAccelerationText(AccelerationDirection.Y, event.values[1]);
-		this.SetAccelerationText(AccelerationDirection.Z, event.values[2]);
+		// TODO Auto-generated method stub
+//		this.acceleromatorSensor.
 	}
 }
