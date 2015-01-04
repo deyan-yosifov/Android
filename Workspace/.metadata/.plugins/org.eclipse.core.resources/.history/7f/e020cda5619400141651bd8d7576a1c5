@@ -42,23 +42,13 @@ public class PlaygroundView extends View {
 
 		//canvas.drawColor(Color.CYAN);
 		this.drawRectangleBounds(canvas);
-		this.drawCircle(canvas, game.ball);
-		this.drawCircle(canvas, game.target);
-		
-		this.invalidate();
-	}
-	
-	private void drawCircle(Canvas canvas, ICircleObject circle){
-//		RectF rect = new RectF()
 	}
 	
 	private void drawRectangleBounds(Canvas canvas){
 		RectF rect = new RectF(0, 0, this.width, this.heigth);
 		matrix.mapRect(rect);	
 
-		this.paint.setColor(Color.MAGENTA);
-		this.paint.setStyle(Paint.Style.STROKE);
-		this.paint.setStrokeWidth(5);
+		this.paint.setColor(Color.RED);
 		canvas.drawRect(rect, this.paint);
 	}
 

@@ -3,10 +3,10 @@ package com.dipiuay.bouncingballgame;
 public class Game {
 	private static final Logger logger = new Logger("Game class");
 	private static final double actualDistanceInMeters = 20;
-	public final float width;
-	public final float height;
-	public final Ball ball;
-	public final Target target;
+	private final float width;
+	private final float height;
+	private final Ball ball;
+	private final Target target;
 	
 		
 	public Game(float width, float height){
