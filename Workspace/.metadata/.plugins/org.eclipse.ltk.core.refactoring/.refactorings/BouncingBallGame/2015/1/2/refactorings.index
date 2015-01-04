@@ -8,3 +8,8 @@
 1420372898690	Rename resource 'activity_single_player_game.xml'
 1420373371249	Rename field 'title_activity_single_player_game'
 1420373666355	Rename package 'com.dipiuay.fallingrocks'
+1420380685844	Delete element
+1420380692688	Delete element
+1420381128453	Rename field 'FallingRocksFonts'
+1420381138125	Rename field 'FallingRocksButtons'
+1420382200747	Rename type 'Game'

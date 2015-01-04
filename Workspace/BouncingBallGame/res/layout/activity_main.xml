@@ -9,13 +9,19 @@
     tools:context="com.dipiuay.bouncingballgame.MainActivity" >
 
     <TextView                
-        style="@style/FallingRocksFonts" 
+        style="@style/GameFonts" 
         android:id="@+id/welcome_header_id"  	
         android:text="@string/welcome_header"
-         />
+         />    
 	<Button
-	    style="@style/FallingRocksButtons" 
+	    style="@style/GameButtons" 
+        android:id="@+id/play_game_button_id"  	
 	    android:layout_below="@id/welcome_header_id"	    
+	    android:text="@string/button_play_game"
+	    android:onClick="playGame" />
+	<Button
+	    style="@style/GameButtons" 
+	    android:layout_below="@id/play_game_button_id"	    
 	    android:text="@string/button_monitor_accelerometer"
 	    android:onClick="startAccelerometerMonitor" />
 

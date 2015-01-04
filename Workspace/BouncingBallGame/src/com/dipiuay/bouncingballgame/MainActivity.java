@@ -1,6 +1,6 @@
 package com.dipiuay.bouncingballgame;
 
-import com.dipiuay.fallingrocks.R;
+import com.dipiuay.bouncingballgame.R;
 
 import android.support.v7.app.ActionBarActivity;
 import android.app.AlertDialog;
@@ -40,11 +40,14 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
     
-    /** Called when the user clicks the Send button */
-    public void startAccelerometerMonitor(View view) {
-    	
-    	String question = "Are you sure you want to monitor the accelerometer :)?";
+    public void playGame(View view) {    	              
+        Intent intent = new Intent(MainActivity.this, GameActivity.class);
+        startActivity(intent); 
+    }
+        
+    public void startAccelerometerMonitor(View view) {    	
     	String header = "Monitor accelerometer?";
+    	String question = "Are you sure you want to monitor the accelerometer :)?";
     	MessageBoxHelper.Alert(this, question, header, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {                 
                 Intent intent = new Intent(MainActivity.this, AccelerometerMonitorActivity.class);
@@ -53,7 +56,6 @@ public class MainActivity extends ActionBarActivity {
 //                intent.putExtra(EXTRA_MESSAGE, message);
                 startActivity(intent);
             }
-         });    	
-    	
+         }); 
     }
 }

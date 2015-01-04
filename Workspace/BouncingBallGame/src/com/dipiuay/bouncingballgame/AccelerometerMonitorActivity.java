@@ -7,7 +7,7 @@ import java.util.List;
 
 import com.dipiuay.bouncingballgame.AccelerometerManager.AccelerometerEvent;
 import com.dipiuay.bouncingballgame.AccelerometerManager.AccelerometerListener;
-import com.dipiuay.fallingrocks.R;
+import com.dipiuay.bouncingballgame.R;
 
 import android.app.Activity;
 import android.hardware.Sensor;

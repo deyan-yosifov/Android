@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Bouncing ball game</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="no_accelerometer_found">Did not detected any accelerometor sensor!</string>
+    <string name="welcome_header">Welcome to Bouncing ball game!</string>
+    <string name="button_play_game">Monitor accelerometer</string>
+    <string name="button_monitor_accelerometer">Monitor accelerometer</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_accelerometer_monitor">Accelerometer monitor</string>
+    <string name="title_activity_game">Game</string>
+
+</resources>
