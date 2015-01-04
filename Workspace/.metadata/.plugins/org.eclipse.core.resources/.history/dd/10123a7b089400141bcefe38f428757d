@@ -39,7 +39,7 @@ public class MainActivity extends ActionBarActivity {
     }
     
     /** Called when the user clicks the Send button */
-    public void startAccelerometerMonitor(View view) {
+    public void startGame(View view) {
     	
     	String question = "Are you sure you want to monitor the accelerometer :)?";
     	String header = "Monitor accelerometer?";

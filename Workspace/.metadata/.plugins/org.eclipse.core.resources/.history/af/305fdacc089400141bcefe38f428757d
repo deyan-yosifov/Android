@@ -4,8 +4,8 @@
     <string name="app_name">Falling Rocks</string>
     <string name="hello_world">Hello world!</string>
     <string name="no_accelerometer_found">Did not detected any accelerometor sensor!</string>
-    <string name="welcome_header">Welcome to Bouncing ball game!</string>
-    <string name="button_monitor_accelerometer">Monitor accelerometer</string>
+    <string name="welcome_header">Welcome to Falling Rocks game!</string>
+    <string name="button_play_game">Play the game!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_single_player_game">Play game!</string>
 

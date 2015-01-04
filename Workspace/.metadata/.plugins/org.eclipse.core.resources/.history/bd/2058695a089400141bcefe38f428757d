@@ -39,10 +39,10 @@ public class MainActivity extends ActionBarActivity {
     }
     
     /** Called when the user clicks the Send button */
-    public void startAccelerometerMonitor(View view) {
+    public void startGame(View view) {
     	
-    	String question = "Are you sure you want to monitor the accelerometer :)?";
-    	String header = "Monitor accelerometer?";
+    	String question = "Are you sure you want to play this stupid game :)?";
+    	String header = "Play game?";
     	MessageBoxHelper.Alert(this, question, header, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {                 
                 Intent intent = new Intent(MainActivity.this, AccelerometerMonitorActivity.class);

@@ -16,7 +16,7 @@
 	<Button
 	    style="@style/FallingRocksButtons" 
 	    android:layout_below="@id/welcome_header_id"	    
-	    android:text="@string/button_monitor_accelerometer"
-	    android:onClick="startAccelerometerMonitor" />
+	    android:text="@string/button_play_game"
+	    android:onClick="startGame" />
 
 </RelativeLayout>
