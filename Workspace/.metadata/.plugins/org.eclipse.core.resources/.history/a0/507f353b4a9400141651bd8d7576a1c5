@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 import android.graphics.Point;
 import android.view.Display;
-import android.view.Surface;
 import android.view.WindowManager;
 
 public class GameApplication extends Application {
@@ -22,20 +21,17 @@ public class GameApplication extends Application {
 	public static Game startNewGame(){
 		logger.log("startNewGame");
 		Point point = getDisplaySize();
-		int rotation = getRotation();		
-		if(rotation == Surface.ROTATION_90 || rotation == Surface.ROTATION_270){
-			point = new Point(point.y, point.x);
-		}		
 		instance.game = new Game(point.x, point.y);
-		
 		return GameApplication.instance.game;
 	}
 	
 	@SuppressLint("NewApi")
 	public static Point getDisplaySize() {
-	    final Point point = new Point();	    
+	    final Point point = new Point();
+	    if(instance.display == null) return point;
+	    
 	    try {
-	    	instance.display.getRealSize(point);
+	        instance.display.getSize(point);
 	    } catch (java.lang.NoSuchMethodError ignore) { // Older device
 	        point.x = instance.display.getWidth();
 	        point.y = instance.display.getHeight();

@@ -35,7 +35,7 @@ public class GameApplication extends Application {
 	public static Point getDisplaySize() {
 	    final Point point = new Point();	    
 	    try {
-	    	instance.display.getRealSize(point);
+	        instance.display.getSize(point);
 	    } catch (java.lang.NoSuchMethodError ignore) { // Older device
 	        point.x = instance.display.getWidth();
 	        point.y = instance.display.getHeight();

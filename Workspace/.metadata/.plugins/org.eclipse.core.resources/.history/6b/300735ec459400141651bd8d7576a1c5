@@ -1,0 +1,38 @@
+package com.dipiuay.bouncingballgame;
+
+import android.app.Application;
+import android.view.Display;
+import android.view.WindowManager;
+
+public class GameApplication extends Application {
+
+	private static GameApplication instance;
+	private static final Logger logger = new Logger("GameApplication");
+	private final Display display;
+	private Game game;
+	
+	public GameApplication(){
+		logger.log("Constructor call");
+		this.game = new Game();
+		this.display = ((WindowManager) this.getSystemService(WINDOW_SERVICE)).getDefaultDisplay();
+		GameApplication.instance = this;
+	}
+	
+	public static Game startGame(){
+		GameApplication.instance.game = new Game();
+		return GameApplication.instance.game;
+	}
+	
+	@Override
+	public void onCreate() {
+		logger.log("OnCreate");
+		super.onCreate();
+	}
+	
+	public static Game getGame()
+	{
+		return GameApplication.instance.game;
+	}
+	
+	
+}

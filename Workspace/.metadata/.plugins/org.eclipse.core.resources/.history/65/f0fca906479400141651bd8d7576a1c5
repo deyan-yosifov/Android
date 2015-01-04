@@ -1,41 +1,33 @@
 package com.dipiuay.bouncingballgame;
 
-import android.annotation.SuppressLint;
 import android.app.Application;
 import android.graphics.Point;
 import android.view.Display;
-import android.view.Surface;
 import android.view.WindowManager;
 
 public class GameApplication extends Application {
 
 	private static GameApplication instance;
 	private static final Logger logger = new Logger("GameApplication");
-	private Display display;
+	private final Display display;
 	private Game game;
 	
 	public GameApplication(){
 		logger.log("Constructor call");
+		this.display = ((WindowManager) this.getSystemService(WINDOW_SERVICE)).getDefaultDisplay();
 		GameApplication.instance = this;
 	}
 	
-	public static Game startNewGame(){
-		logger.log("startNewGame");
+	public static Game startGame(){
 		Point point = getDisplaySize();
-		int rotation = getRotation();		
-		if(rotation == Surface.ROTATION_90 || rotation == Surface.ROTATION_270){
-			point = new Point(point.y, point.x);
-		}		
-		instance.game = new Game(point.x, point.y);
-		
+		instance.game = new Game();
 		return GameApplication.instance.game;
 	}
 	
-	@SuppressLint("NewApi")
 	public static Point getDisplaySize() {
-	    final Point point = new Point();	    
+	    final Point point = new Point();
 	    try {
-	    	instance.display.getRealSize(point);
+	        instance.display.getSize(point);
 	    } catch (java.lang.NoSuchMethodError ignore) { // Older device
 	        point.x = instance.display.getWidth();
 	        point.y = instance.display.getHeight();
@@ -44,16 +36,10 @@ public class GameApplication extends Application {
 	    return point;
 	}
 	
-	public static int getRotation(){
-		return instance.display.getRotation();
-	}
-	
 	@Override
 	public void onCreate() {
 		logger.log("OnCreate");
 		super.onCreate();
-		this.display = ((WindowManager) this.getSystemService(WINDOW_SERVICE)).getDefaultDisplay();
-		startNewGame();
 	}
 	
 	public static Game getGame()

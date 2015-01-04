@@ -33,9 +33,11 @@ public class GameApplication extends Application {
 	
 	@SuppressLint("NewApi")
 	public static Point getDisplaySize() {
-	    final Point point = new Point();	    
+	    final Point point = new Point();
+	    if(instance.display == null) return point;
+	    
 	    try {
-	    	instance.display.getRealSize(point);
+	        instance.display.getSize(point);
 	    } catch (java.lang.NoSuchMethodError ignore) { // Older device
 	        point.x = instance.display.getWidth();
 	        point.y = instance.display.getHeight();
