@@ -1,0 +1,9 @@
+package com.dipiuay.bouncingballgame;
+
+import android.graphics.PointF;
+
+public interface ICircle {
+	PointF getPosition();
+	double getRadius();
+	
+}

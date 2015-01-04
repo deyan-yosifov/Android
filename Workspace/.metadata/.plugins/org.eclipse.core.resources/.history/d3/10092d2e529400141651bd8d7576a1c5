@@ -1,0 +1,9 @@
+package com.dipiuay.bouncingballgame;
+
+import android.graphics.Point;
+
+public class Algebra {
+	public static Point Add(Point a, Point b){
+		return new Point(a.x + b.x, a.y + b.y);
+	}
+}

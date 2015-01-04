@@ -1,0 +1,17 @@
+package com.dipiuay.bouncingballgame;
+
+import android.graphics.Point;
+
+public class Algebra {
+	public static Point add(Point a, Point b){
+		return new Point(a.x + b.x, a.y + b.y);
+	}
+	
+	public static double dotProduct(Point a, Point b){
+		return a.x * b.x  + a.y * b.y;
+	}
+	
+	public static Point substract(Point a, Point b){
+		return new Point(a.x - b.x, a.y - b.y);
+	}
+}

@@ -1,0 +1,35 @@
+package com.dipiuay.bouncingballgame;
+
+import android.graphics.Point;
+
+public class Algebra {
+	public static final double epsilon = 1E-6;
+	
+	public static boolean isZero(double a, double eps){
+		return Math.abs(a) < eps;
+	}
+	
+	public static boolean isZero(double a){
+		return isZero(a, epsilon);
+	}
+	
+	public static boolean areEqual(double a, double b, double eps){
+		return isZero(a-b, eps);
+	}
+	
+	public static boolean areEqual(double a, double b){
+		return areEqual(a, b, epsilon);
+	}
+	
+	public static Point add(Point a, Point b){
+		return new Point(a.x + b.x, a.y + b.y);
+	}
+	
+	public static double dotProduct(Point a, Point b){
+		return a.x * b.x  + a.y * b.y;
+	}
+	
+	public static Point substract(Point a, Point b){
+		return new Point(a.x - b.x, a.y - b.y);
+	}
+}

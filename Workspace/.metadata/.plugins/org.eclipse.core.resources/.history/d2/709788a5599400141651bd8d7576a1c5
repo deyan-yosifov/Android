@@ -1,0 +1,10 @@
+package com.dipiuay.bouncingballgame;
+
+import android.graphics.Color;
+import android.graphics.PointF;
+
+public interface ICircleObject {
+	PointF getPosition();
+	double getRadius();
+	int getColor();
+}

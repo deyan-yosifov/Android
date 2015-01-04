@@ -1,0 +1,32 @@
+package com.dipiuay.bouncingballgame;
+
+public class Game {
+	private static final Logger logger = new Logger("Game class");
+	private static final double actualDistanceInMeters = 20;
+	private final float width;
+	private final float height;
+	private final Ball ball;
+	private final Target target;
+	
+		
+	public Game(float width, float height){
+		this.width = width;
+		this.height = height;
+		this.ball = new Ball();
+		this.target = new Target();
+		
+		logger.log("New Game with size: (" + this.width + ", " + this.height + ")");
+		
+		this.initializePlayground();
+	}
+	
+	private void initializePlayground(){
+		double minimalSize = Math.min(this.width, this.height);
+		
+		this.ball.radius = minimalSize / 10;
+		this.ball.position.x = this.width / 2;
+		this.ball.position.y = this.height * 4 / 5;
+		
+		
+	}
+}

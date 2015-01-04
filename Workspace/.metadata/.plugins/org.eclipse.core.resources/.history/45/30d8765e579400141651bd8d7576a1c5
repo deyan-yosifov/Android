@@ -1,0 +1,8 @@
+package com.dipiuay.bouncingballgame;
+
+import android.graphics.Point;
+
+public class Ball {
+	public Point position;
+	public double radius;
+}
