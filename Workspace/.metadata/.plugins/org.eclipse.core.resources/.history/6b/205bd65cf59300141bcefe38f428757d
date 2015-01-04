@@ -1,0 +1,37 @@
+package com.dipiuay.fallingrocks;
+
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+
+public class AccelerometerManager implements SensorEventListener {
+
+	public class AccelerometerEvent{
+		private SensorEvent sensorEvent;
+		
+		public AccelerometerEvent(SensorEvent sensorEvent){
+			this.sensorEvent = sensorEvent;
+		}
+		
+		public SensorEvent getSensorEvent(){
+			return this.sensorEvent;
+		}
+	}
+	
+	public interface AccelerometerListener {
+		void onAccelerometerChanged(AccelerometerEvent accelerometerEvent);		
+	}
+	
+	@Override
+	public void onAccuracyChanged(Sensor sensor, int accuracy) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onSensorChanged(SensorEvent event) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

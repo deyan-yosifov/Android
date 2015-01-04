@@ -54,9 +54,4 @@ public class MainActivity extends ActionBarActivity {
          });    	
     	
     }
-    
-    
-    
-    // TODO:
-    //private void ShowMessage(String text, String header)
 }
