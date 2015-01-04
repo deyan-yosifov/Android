@@ -5,3 +5,5 @@
 1420372357059	Rename type 'SinglePlayerGameActivity'
 1420372487612	Rename method 'startGame'
 1420372624552	Rename field 'button_play_game'
+1420372898690	Rename resource 'activity_single_player_game.xml'
+1420373371249	Rename field 'title_activity_single_player_game'

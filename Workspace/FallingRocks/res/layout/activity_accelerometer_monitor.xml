@@ -1,0 +1,201 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" 
+    tools:context="${relativePackage}.${activityClass}">
+	<LinearLayout     
+		android:layout_width="fill_parent"
+	    android:layout_height="wrap_content" 
+	    android:orientation="vertical">
+	    
+		<LinearLayout
+		    android:layout_width="fill_parent"
+	        android:layout_height="wrap_content" 
+	        android:layout_margin="@dimen/activity_vertical_margin"
+	        android:padding="@dimen/activity_vertical_margin"
+	        android:orientation="vertical"
+	        android:id="@+id/acceleromatorValues"
+	        android:background="#99cccccc"
+		    >
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/accelerometer_x_coordinate_textView"
+		        android:text="@string/no_accelerometer_found" />
+		    
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/accelerometer_y_coordinate_textView"
+		        android:text="@string/no_accelerometer_found" />
+		    
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/accelerometer_z_coordinate_textView"
+		        android:text="@string/no_accelerometer_found" />
+		    
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/accelerometer_length_textView"
+		        android:text="@string/no_accelerometer_found" />
+		</LinearLayout>	
+		
+		<LinearLayout 
+		    android:layout_width="fill_parent" 
+	        android:layout_height="wrap_content" 
+	        android:layout_margin="@dimen/activity_vertical_margin"
+	        android:padding="@dimen/activity_vertical_margin"
+	        android:orientation="vertical"
+	        android:id="@+id/linearAccelerationValues"
+	        android:background="#99aaaaaa"
+		    >
+			<TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/linearAcceleration_x_coordinate_textView"
+		        android:text="@string/no_accelerometer_found" />
+		    
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/linearAcceleration_y_coordinate_textView"
+		        android:text="@string/no_accelerometer_found" />
+		    
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/linearAcceleration_z_coordinate_textView"
+		        android:text="@string/no_accelerometer_found" />
+		    
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/linearAcceleration_length__textView"
+		        android:text="@string/no_accelerometer_found" />
+		    
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/min_linearAcceleration_length__textView"
+		        android:text="@string/no_accelerometer_found" />
+		    
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/max_linearAcceleration_length__textView"
+		        android:text="@string/no_accelerometer_found" />
+		    
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/average_linearAcceleration_length__textView"
+		        android:text="@string/no_accelerometer_found" />
+		</LinearLayout>
+		
+		<LinearLayout 
+		    android:layout_width="fill_parent" 
+	        android:layout_height="wrap_content" 
+	        android:layout_margin="@dimen/activity_vertical_margin"
+	        android:padding="@dimen/activity_vertical_margin"
+	        android:orientation="vertical"
+	        android:id="@+id/gravityValues"
+	        android:background="#99888888"
+		    >
+			<TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/gravity_x_coordinate_textView"
+		        android:text="@string/no_accelerometer_found" />
+		    
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/gravity_y_coordinate_textView"
+		        android:text="@string/no_accelerometer_found" />
+		    
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/gravity_z_coordinate_textView"
+		        android:text="@string/no_accelerometer_found" />
+		    
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/gravity_length_coordinate_textView"
+		        android:text="@string/no_accelerometer_found" />
+		    
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/min_gravity_length_textView"
+		        android:text="@string/no_accelerometer_found" />
+		    
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/max_gravity_length_textView"
+		        android:text="@string/no_accelerometer_found" />
+		    
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/average_gravity_length_textView"
+		        android:text="@string/no_accelerometer_found" />
+		</LinearLayout>
+		
+		<LinearLayout
+		    android:layout_width="fill_parent" 
+	        android:layout_height="wrap_content" 
+	        android:layout_margin="@dimen/activity_vertical_margin"
+	        android:padding="@dimen/activity_vertical_margin"
+	        android:orientation="vertical"
+	        android:id="@+id/timeValues"
+	        android:background="#99666666"
+		    >
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/currentTime_textView"
+		        android:text="@string/no_accelerometer_found" />
+		    	    
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/currentEventTime_textView"
+		        android:text="@string/no_accelerometer_found" />
+		    
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/currentDeltaTime_textView"
+		        android:text="@string/no_accelerometer_found" />
+		    
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/currentEventDeltaTime_textView"
+		        android:text="@string/no_accelerometer_found" />
+		    
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/averageDeltaTime_textView"
+		        android:text="@string/no_accelerometer_found" />
+		    
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/minDeltaTime_textView"
+		        android:text="@string/no_accelerometer_found" />
+		    
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/maxDeltaTime_textView"
+		        android:text="@string/no_accelerometer_found" />
+		</LinearLayout>
+	</LinearLayout>
+</ScrollView>

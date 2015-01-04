@@ -24,7 +24,7 @@
         </activity>
         <activity
             android:name=".AccelerometerMonitorActivity"
-            android:label="@string/title_activity_accelerometer_monitor" >
+            android:label="@string/title_activity_single_player_game" >
         </activity>
     </application>
 
