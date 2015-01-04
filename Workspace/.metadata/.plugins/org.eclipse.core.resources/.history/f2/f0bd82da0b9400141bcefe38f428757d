@@ -37,7 +37,7 @@ public class AccelerometerMonitorActivity extends Activity implements Accelerome
 		Llength
 	}
 	
-	private static final Logger logger = new Logger("AccelerometerMonitorActivity");
+	private static final Logger logger = new Logger("SinglePlayerGameActivity");
 	private TextView xCoordTextView;
 	private TextView yCoordTextView;
 	private TextView zCoordTextView;
