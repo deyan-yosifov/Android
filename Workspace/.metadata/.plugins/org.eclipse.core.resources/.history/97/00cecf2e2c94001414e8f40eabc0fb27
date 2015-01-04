@@ -1,0 +1,39 @@
+package com.dipiuay.bouncingballgame;
+
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+
+public class PlaygroundView extends View {
+
+	private final Logger logger = new Logger("PlaygroundView");
+	private int width;
+	private int heigth;
+	
+	public PlaygroundView(Context context) {
+		super(context);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	protected void onDraw(Canvas canvas) {
+		logger.Log("onDraw");
+		super.onDraw(canvas);
+	}
+
+	@Override
+	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+		logger.Log("onMeasure");
+		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+	}
+
+	@Override
+	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+		logger.Log("onSizeChanged");
+		this.width = w;
+		this.heigth = h;
+		super.onSizeChanged(w, h, oldw, oldh);
+	}
+
+	
+}

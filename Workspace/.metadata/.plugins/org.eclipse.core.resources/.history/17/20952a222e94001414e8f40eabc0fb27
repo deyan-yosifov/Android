@@ -1,0 +1,49 @@
+package com.dipiuay.bouncingballgame;
+
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.view.View;
+
+public class PlaygroundView extends View {
+
+	private final Logger logger = new Logger("PlaygroundView");
+	private int width;
+	private int heigth;
+	private Paint paint;
+	
+	public PlaygroundView(Context context) {
+		super(context);
+		this.paint = new Paint();
+	}
+
+	@Override
+	protected void onDraw(Canvas canvas) {
+		logger.log("onDraw");
+
+		logger.log("View size: (" + this.width + "; " + this.heigth + ")");
+		logger.log("Canvas size: (" + canvas.getWidth() + "; " + canvas.getHeight() + ")");
+
+		canvas.drawColor(Color.CYAN);
+		this.paint.setColor(Color.RED);
+		canvas.drawOval(new RectF(0, 0, this.width, this.heigth), paint);
+	}
+
+	@Override
+	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+		logger.log("onMeasure");
+		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+	}
+
+	@Override
+	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+		logger.log("onSizeChanged");
+		this.width = w;
+		this.heigth = h;
+		super.onSizeChanged(w, h, oldw, oldh);
+	}
+
+	
+}

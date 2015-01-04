@@ -7,7 +7,7 @@ public class Logger {
 		this.activityName = activityName;		
 	}
 	
-	public void Log(String text){
+	public void log(String text){
 		android.util.Log.d(this.activityName, text);
 	}
 }

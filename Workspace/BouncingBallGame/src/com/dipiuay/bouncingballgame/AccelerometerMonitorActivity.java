@@ -87,7 +87,7 @@ public class AccelerometerMonitorActivity extends Activity implements Accelerome
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		logger.Log("OnCreate");
+		logger.log("OnCreate");
 		setContentView(R.layout.activity_accelerometer_monitor);
 		this.xCoordTextView = (TextView)this.findViewById(R.id.accelerometer_x_coordinate_textView);
 		this.yCoordTextView = (TextView)this.findViewById(R.id.accelerometer_y_coordinate_textView);
@@ -124,14 +124,14 @@ public class AccelerometerMonitorActivity extends Activity implements Accelerome
 
 	@Override
 	protected void onResume() {
-		logger.Log("OnResume");
+		logger.log("OnResume");
 		super.onResume();
 		this.accelerometerManager.startListening();
 	}
 	
 	@Override
 	protected void onPause() {
-		logger.Log("OnPause");
+		logger.log("OnPause");
 		super.onPause();
 		this.accelerometerManager.stopListening();
 	}

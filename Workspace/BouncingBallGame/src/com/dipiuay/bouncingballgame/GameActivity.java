@@ -4,13 +4,25 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 
 public class GameActivity extends ActionBarActivity {
-
+	
+	private static final Logger logger = new Logger("GameActivity");
+	
+	public GameActivity(){
+		logger.log("constructor call");
+	}
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		logger.log("OnCreate");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game);
+		
+		ViewGroup viewGroup = (ViewGroup) this.findViewById(R.id.playground_owner);
+		PlaygroundView playground = new PlaygroundView(this);
+		viewGroup.addView(playground);
 	}
 
 	@Override
