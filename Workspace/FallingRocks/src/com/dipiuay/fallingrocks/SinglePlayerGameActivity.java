@@ -5,6 +5,9 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import com.dipiuay.fallingrocks.AccelerometerManager.AccelerometerEvent;
+import com.dipiuay.fallingrocks.AccelerometerManager.AccelerometerListener;
+
 import android.app.Activity;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -16,7 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class SinglePlayerGameActivity extends Activity implements SensorEventListener {
+public class SinglePlayerGameActivity extends Activity implements AccelerometerListener {
 	
 	private enum AccelerationDirection {
 		X,
@@ -32,8 +35,7 @@ public class SinglePlayerGameActivity extends Activity implements SensorEventLis
 		Lz,
 		Llength
 	}
-
-	private static final double gravityFilterTimeConstant = 0.8;
+	
 	private static final Logger logger = new Logger("SinglePlayerGameActivity");
 	private TextView xCoordTextView;
 	private TextView yCoordTextView;
@@ -64,8 +66,8 @@ public class SinglePlayerGameActivity extends Activity implements SensorEventLis
 	private TextView minDeltaTimeTextView;
 	private TextView maxDeltaTimeTextView;
 	
-	private final double[] gravity = new double[3];
-	private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	private AccelerometerManager accelerometerManager;
 	private int countOfSensorMeasurements;
 	private Date firstTime;
 	private long firstEventTime;
@@ -80,9 +82,6 @@ public class SinglePlayerGameActivity extends Activity implements SensorEventLis
 	private double maxLinearLength;
 	private double sumLinearLength;
 	
-	
-	private SensorManager sensorManager;
-	private Sensor acceleromatorSensor;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -118,35 +117,22 @@ public class SinglePlayerGameActivity extends Activity implements SensorEventLis
 		this.minDeltaTimeTextView = (TextView)this.findViewById(R.id.minDeltaTime_textView);
 		this.maxDeltaTimeTextView = (TextView)this.findViewById(R.id.maxDeltaTime_textView);
 		
-		this.sensorManager = (SensorManager) getSystemService(this.SENSOR_SERVICE);		
-		this.acceleromatorSensor = this.sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-	}
-	
-	@Override
-	protected void onPause() {
-		logger.Log("OnPause");
-		super.onPause();
-		this.unregisterSensors();
+		SensorManager sensorManager = (SensorManager) getSystemService(this.SENSOR_SERVICE);		
+		this.accelerometerManager = new AccelerometerManager(this, sensorManager);
 	}
 
 	@Override
 	protected void onResume() {
 		logger.Log("OnResume");
 		super.onResume();
-		this.registerSensors();
+		this.accelerometerManager.startListening();
 	}
 	
-	private void registerSensors(){
-		if(this.acceleromatorSensor != null){
-			this.sensorManager.registerListener(this, this.acceleromatorSensor, SensorManager.SENSOR_DELAY_NORMAL);
-		}
-		else{
-			MessageBoxHelper.Alert(this, "No acceleromator sensor found!");
-		}
-	}
-	
-	private void unregisterSensors(){
-		this.sensorManager.unregisterListener(this);
+	@Override
+	protected void onPause() {
+		logger.Log("OnPause");
+		super.onPause();
+		this.accelerometerManager.stopListening();
 	}
 
 	private void SetAccelerationText(AccelerationDirection direction, double acceleration){
@@ -194,27 +180,16 @@ public class SinglePlayerGameActivity extends Activity implements SensorEventLis
 	}
 
 	@Override
-	public void onAccuracyChanged(Sensor arg0, int arg1) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onSensorChanged(SensorEvent event) {
+	public void onAccelerometerChanged(AccelerometerEvent accelerometerEvent) {
 		Date currentTime = new Date();	
-		long currentEventTime = event.timestamp;
+		long currentEventTime = accelerometerEvent.sensorEvent.timestamp;
 		Date currentEventDate = new Date(currentEventTime);
-		double[] acceleration = new double[3];
-		acceleration[0] = event.values[0];
-		acceleration[1] = event.values[1];
-		acceleration[2] = event.values[2];		
+		float[] a = accelerometerEvent.sensorEvent.values;
+		Vector3D acceleration = new Vector3D(a[0], a[1], a[2]);	
 		
 		if(this.firstTime == null){
 			this.firstTime = currentTime;
 			this.firstEventTime = currentEventTime;
-			this.gravity[0] = event.values[0];
-			this.gravity[1] = event.values[1];
-			this.gravity[2] = event.values[2];
 			this.sumGravityLength = this.sumLinearLength = this.countOfSensorMeasurements = 0;
 			this.minDeltaTime = this.minGravityLength = this.minLinearLength = Double.MAX_VALUE;
 			this.maxDeltaTime = this.maxGravityLength = this.maxLinearLength = -Double.MAX_VALUE;			
@@ -227,41 +202,35 @@ public class SinglePlayerGameActivity extends Activity implements SensorEventLis
 			double averageDeltaTime = deltaStartTime / this.countOfSensorMeasurements;			
 			this.minDeltaTime = Math.min(this.minDeltaTime, deltaTime);
 			this.maxDeltaTime = Math.max(this.maxDeltaTime, deltaTime);			
-			
-			double alpha = gravityFilterTimeConstant / (gravityFilterTimeConstant + deltaTime);
-			this.gravity[0] = alpha * this.gravity[0] + (1-alpha) * event.values[0];
-			this.gravity[1] = alpha * this.gravity[1] + (1-alpha) * event.values[1];
-			this.gravity[2] = alpha * this.gravity[2] + (1-alpha) * event.values[2];
-			double gravityLength = this.CalculateLength(this.gravity);
+						
+			Vector3D gravity = accelerometerEvent.gravityAcceleration;
+			double gravityLength = gravity.getLegth();
 			this.sumGravityLength += gravityLength;
 			this.minGravityLength = Math.min(this.minGravityLength, gravityLength);
 			this.maxGravityLength = Math.max(this.maxGravityLength, gravityLength);
 			
-			this.SetAccelerationText(AccelerationDirection.Gx, this.gravity[0]);
-			this.SetAccelerationText(AccelerationDirection.Gy, this.gravity[1]);
-			this.SetAccelerationText(AccelerationDirection.Gz, this.gravity[2]);
+			this.SetAccelerationText(AccelerationDirection.Gx, gravity.x);
+			this.SetAccelerationText(AccelerationDirection.Gy, gravity.y);
+			this.SetAccelerationText(AccelerationDirection.Gz, gravity.z);
 			this.SetAccelerationText(AccelerationDirection.Glength, gravityLength);	
 			this.averageGravityLengthTextView.setText("average gravity: " + (this.sumGravityLength / this.countOfSensorMeasurements));
 			this.minGravityLengthTextView.setText("min gravity: " + this.minGravityLength);
 			this.maxGravityLengthTextView.setText("max gravity: " + this.maxGravityLength);
 			
-			this.SetAccelerationText(AccelerationDirection.X, acceleration[0]);
-			this.SetAccelerationText(AccelerationDirection.Y, acceleration[1]);
-			this.SetAccelerationText(AccelerationDirection.Z, acceleration[2]);	
-			this.SetAccelerationText(AccelerationDirection.Length, this.CalculateLength(acceleration));
+			this.SetAccelerationText(AccelerationDirection.X, acceleration.x);
+			this.SetAccelerationText(AccelerationDirection.Y, acceleration.y);
+			this.SetAccelerationText(AccelerationDirection.Z, acceleration.z);	
+			this.SetAccelerationText(AccelerationDirection.Length, acceleration.getLegth());
 			
-			double[] linearAcceleration = new double[3];
-			linearAcceleration[0] = acceleration[0] - this.gravity[0];
-			linearAcceleration[1] = acceleration[1] - this.gravity[1];
-			linearAcceleration[2] = acceleration[2] - this.gravity[2];
-			double linearLength = this.CalculateLength(linearAcceleration);
+			Vector3D linearAcceleration = accelerometerEvent.linearAcceleration;
+			double linearLength = linearAcceleration.getLegth();
 			this.sumLinearLength += linearLength;
 			this.minLinearLength = Math.min(this.minLinearLength, linearLength);
 			this.maxLinearLength = Math.max(this.maxLinearLength, linearLength);
 			
-			this.SetAccelerationText(AccelerationDirection.Lx, linearAcceleration[0]);
-			this.SetAccelerationText(AccelerationDirection.Ly, linearAcceleration[1]);
-			this.SetAccelerationText(AccelerationDirection.Lz, linearAcceleration[2]);	
+			this.SetAccelerationText(AccelerationDirection.Lx, linearAcceleration.x);
+			this.SetAccelerationText(AccelerationDirection.Ly, linearAcceleration.y);
+			this.SetAccelerationText(AccelerationDirection.Lz, linearAcceleration.z);	
 			this.SetAccelerationText(AccelerationDirection.Llength, linearLength);
 			this.averageLinearLengthTextView.setText("average linear: " + (this.sumLinearLength / this.countOfSensorMeasurements));
 			this.minLinearLengthTextView.setText("min linear: " + this.minLinearLength);
@@ -277,10 +246,6 @@ public class SinglePlayerGameActivity extends Activity implements SensorEventLis
 		}		
 
 		this.lastTime = currentTime;
-		this.lastEventTime = currentEventTime;
-	}
-	
-	private double CalculateLength(double[] vector) {
-		return Math.sqrt(vector[0] * vector[0] + vector[1] * vector[1] + vector[2] * vector[2]);
+		this.lastEventTime = currentEventTime;		
 	}
 }

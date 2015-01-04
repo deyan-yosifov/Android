@@ -1,1 +1,4 @@
 1420363114087	Rename type 'AccelerometerListener'
+1420371211605	Rename method 'LogAccelerometerNotFound'
+1420372216010	Rename method 'StartListening'
+1420372223013	Rename method 'StopListening'
