@@ -16,7 +16,6 @@ public class PlaygroundView extends View {
 	private int width;
 	private int height;
 	private float scale;
-	private Canvas canvas;
 	
 	public PlaygroundView(Context context) {
 		super(context);
@@ -28,18 +27,17 @@ public class PlaygroundView extends View {
 	protected void onDraw(Canvas canvas) {
 		logger.log("onDraw");
 
-		this.canvas = canvas;
-		this.width = this.canvas.getWidth();
-		this.height = this.canvas.getHeight();
+		this.width = canvas.getWidth();
+		this.height = canvas.getHeight();
 		float centerX = this.width / 2.0f;
 		float centerY = this.height / 2.0f;
 		logger.log("Canvas size: (" + this.width + "; " + this.height + ")");
 		
 		int rotation = GameApplication.getRotation();
-		Game game = GameApplication.getGame();
-		float gameCenterX = game.rectangle.centerX();
-		float gameCenterY = game.rectangle.centerY();
 		float angle = 0;
+		Game game = GameApplication.getGame();
+		float gameCenterX = game.width() / 2.0f;
+		float gameCenterY = game.height() / 2.0f;
 		
 		switch(rotation){
 			case Surface.ROTATION_0:
@@ -59,47 +57,44 @@ public class PlaygroundView extends View {
 				this.scale = Math.min(this.width / game.height(), this.height / game.width());
 				break;
 		}
-				
-		logger.log("Is canvas matrix identity: " + (this.canvas.getMatrix().isIdentity() ? "yes" : "no"));
-		this.canvas.translate(centerX - gameCenterX, centerY - gameCenterY);
-		this.canvas.rotate(angle, gameCenterX, gameCenterY);
-		this.canvas.scale(scale, scale, gameCenterX, gameCenterY);
-
+		
 		//canvas.drawColor(Color.CYAN);
-		this.drawRectangleBounds(game.rectangle);		
-		this.drawCircle(game.ball);
-		this.drawCircle(game.target);
+		
+//		canvas.translate(-centerX, -centerY);
+//		canvas.rotate(angle, centerX, centerY);
+//		canvas.scale(0.5f, 0.5f, centerX, centerY);
+//		this.drawRectangleBounds(canvas, this.getRectangle(canvas));
+
+		canvas.translate(centerX - gameCenterX, centerY - gameCenterY);
+		canvas.rotate(angle, gameCenterX, gameCenterY);
+		canvas.scale(scale, scale, gameCenterX, gameCenterY);
+		this.drawRectangleBounds(canvas, game.rectangle);
+		
+		this.drawCircle(canvas, game.ball);
+		this.drawCircle(canvas, game.target);
 		
 		//this.invalidate();
 	}
 	
-	private void setColor(int color){
-		this.paint.setColor(color);
+	private RectF getRectangle(Canvas canvas){
+		return new RectF(0, 0, canvas.getWidth(), canvas.getHeight());
 	}
 	
-	private void setStyle(Paint.Style style){
-		this.paint.setStyle(style);
-	}
-	
-	private void setStrokeWidth(float width){
-		this.paint.setStrokeWidth(width / this.scale);
-	}
-	
-	private void drawCircle(ICircleObject circle){
+	private void drawCircle(Canvas canvas, ICircleObject circle){
 		RectF rect = new RectF();
 	}
 	
-	private void drawRectangleBounds(RectF rect){
+	private void drawRectangleBounds(Canvas canvas, RectF rect){
 		
-		this.setColor(Color.MAGENTA);
-		this.setStyle(Paint.Style.STROKE);
-		this.setStrokeWidth(50);
-		this.canvas.drawRect(rect, this.paint);
+		this.paint.setColor(Color.MAGENTA);
+		this.paint.setStyle(Paint.Style.STROKE);
+		this.paint.setStrokeWidth(50 / this.scale);
+		canvas.drawRect(rect, this.paint);
 		
-		this.setColor(Color.RED);
-		this.setStyle(Paint.Style.FILL);
-		this.setStrokeWidth(0);
-		this.canvas.drawOval(rect,  this.paint);		
+		this.paint.setColor(Color.RED);
+		this.paint.setStyle(Paint.Style.FILL);
+		this.paint.setStrokeWidth(0);
+		canvas.drawOval(rect,  this.paint);		
 	}
 
 	

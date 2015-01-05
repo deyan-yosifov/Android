@@ -29,17 +29,17 @@ public class PlaygroundView extends View {
 		logger.log("onDraw");
 
 		this.canvas = canvas;
-		this.width = this.canvas.getWidth();
-		this.height = this.canvas.getHeight();
+		this.width = canvas.getWidth();
+		this.height = canvas.getHeight();
 		float centerX = this.width / 2.0f;
 		float centerY = this.height / 2.0f;
 		logger.log("Canvas size: (" + this.width + "; " + this.height + ")");
 		
 		int rotation = GameApplication.getRotation();
-		Game game = GameApplication.getGame();
-		float gameCenterX = game.rectangle.centerX();
-		float gameCenterY = game.rectangle.centerY();
 		float angle = 0;
+		Game game = GameApplication.getGame();
+		float gameCenterX = game.width() / 2.0f;
+		float gameCenterY = game.height() / 2.0f;
 		
 		switch(rotation){
 			case Surface.ROTATION_0:
@@ -59,18 +59,22 @@ public class PlaygroundView extends View {
 				this.scale = Math.min(this.width / game.height(), this.height / game.width());
 				break;
 		}
-				
-		logger.log("Is canvas matrix identity: " + (this.canvas.getMatrix().isIdentity() ? "yes" : "no"));
-		this.canvas.translate(centerX - gameCenterX, centerY - gameCenterY);
-		this.canvas.rotate(angle, gameCenterX, gameCenterY);
-		this.canvas.scale(scale, scale, gameCenterX, gameCenterY);
-
+		
 		//canvas.drawColor(Color.CYAN);
+
+		canvas.translate(centerX - gameCenterX, centerY - gameCenterY);
+		canvas.rotate(angle, gameCenterX, gameCenterY);
+		canvas.scale(scale, scale, gameCenterX, gameCenterY);
+		
 		this.drawRectangleBounds(game.rectangle);		
 		this.drawCircle(game.ball);
 		this.drawCircle(game.target);
 		
 		//this.invalidate();
+	}
+	
+	private void drawCircle(ICircleObject circle){
+		RectF rect = new RectF();
 	}
 	
 	private void setColor(int color){
@@ -85,15 +89,11 @@ public class PlaygroundView extends View {
 		this.paint.setStrokeWidth(width / this.scale);
 	}
 	
-	private void drawCircle(ICircleObject circle){
-		RectF rect = new RectF();
-	}
-	
 	private void drawRectangleBounds(RectF rect){
 		
 		this.setColor(Color.MAGENTA);
 		this.setStyle(Paint.Style.STROKE);
-		this.setStrokeWidth(50);
+		this.setStrokeWidth(50 / this.scale);
 		this.canvas.drawRect(rect, this.paint);
 		
 		this.setColor(Color.RED);

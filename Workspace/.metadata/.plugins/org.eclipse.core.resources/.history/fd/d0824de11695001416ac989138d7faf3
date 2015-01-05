@@ -1,0 +1,48 @@
+package com.dipiuay.bouncingballgame;
+
+public class Game {
+	private static final Logger logger = new Logger("Game class");
+	private static final float actualDistanceInMeters = 20;
+	public final float width;
+	public final float height;
+	public final Ball ball;
+	public final Target target;
+	
+		
+	public Game(float screenRatio){
+		if(screenRatio < 1){
+			this.width = actualDistanceInMeters;
+			this.height = this.width / screenRatio;
+		}
+		else{
+			this.height = actualDistanceInMeters;
+			this.width = this.height * screenRatio;
+		}
+		
+		this.ball = new Ball();
+		this.target = new Target();
+		
+		logger.log("New Game with size: (" + this.width + ", " + this.height + ")");
+		
+		this.initializePlayground();
+	}
+	
+	private void initializePlayground(){
+		float minimalSize = Math.min(this.width, this.height);
+		
+		this.ball.radius = minimalSize / 10;
+		this.ball.position.x = this.width * 0.5f;
+		this.ball.position.y = this.height * 0.8f;
+		
+		this.target.radius = this.ball.radius / 2;
+		this.moveTargetRandomly();
+	}
+	
+	private void moveTargetRandomly(){
+		float randomX = (float)Math.random();
+		float randomY = (float)Math.random();
+		
+		this.target.position.x = target.radius / 2 + (this.width - target.radius) * randomX;
+		this.target.position.y = target.radius / 2 + (this.height - target.radius) * randomY;		
+	}
+}

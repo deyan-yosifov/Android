@@ -60,7 +60,6 @@ public class PlaygroundView extends View {
 				break;
 		}
 				
-		logger.log("Is canvas matrix identity: " + (this.canvas.getMatrix().isIdentity() ? "yes" : "no"));
 		this.canvas.translate(centerX - gameCenterX, centerY - gameCenterY);
 		this.canvas.rotate(angle, gameCenterX, gameCenterY);
 		this.canvas.scale(scale, scale, gameCenterX, gameCenterY);
