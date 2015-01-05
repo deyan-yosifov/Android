@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.PointF;
 import android.graphics.RectF;
 import android.view.Surface;
 import android.view.View;
@@ -39,9 +38,9 @@ public class PlaygroundView extends View {
 		this.applyPlaygroundTransformation(game);
 
 		//canvas.drawColor(Color.CYAN);
-		this.drawPlaygroundBounds(game);	
-		this.drawCircle(game.target);	
+		this.drawPlaygroundBounds(game);		
 		this.drawCircle(game.ball);
+		this.drawCircle(game.target);
 		
 		this.invalidate();
 	}
@@ -77,7 +76,7 @@ public class PlaygroundView extends View {
 				
 		//logger.log("Is canvas matrix identity: " + (this.canvas.getMatrix().isIdentity() ? "yes" : "no"));
 		this.canvas.translate(this.width / 2.0f - gameCenterX, this.height / 2.0f - gameCenterY);
-		this.canvas.rotate(-angle, gameCenterX, gameCenterY);
+		this.canvas.rotate(angle, gameCenterX, gameCenterY);
 		this.canvas.scale(scale, scale, gameCenterX, gameCenterY);
 	}
 	
@@ -94,13 +93,7 @@ public class PlaygroundView extends View {
 	}
 	
 	private void drawCircle(ICircleObject circle){
-		PointF position = circle.getPosition();
-		float radius = circle.getRadius();
-		
-		this.setColor(circle.getColor());
-		this.setStyle(Paint.Style.FILL);
-		this.setStrokeWidth(0);
-		this.canvas.drawCircle(position.x, position.y, radius, this.paint);
+		RectF rect = new RectF();
 	}
 	
 	private void drawPlaygroundBounds(Game game){
@@ -112,5 +105,10 @@ public class PlaygroundView extends View {
 		this.setStyle(Paint.Style.STROKE);
 		this.setStrokeWidth(PlaygroundStrokeWidth);
 		this.canvas.drawRect(enlargedRect, this.paint);
+		
+		this.setColor(Color.RED);
+		this.setStyle(Paint.Style.FILL);
+		this.setStrokeWidth(0);
+		this.canvas.drawOval(rect,  this.paint);
 	}	
 }
