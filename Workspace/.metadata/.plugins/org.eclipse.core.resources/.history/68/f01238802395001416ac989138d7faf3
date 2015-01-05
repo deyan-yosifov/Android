@@ -21,6 +21,7 @@
         android:layout_below="@id/score_view"
 	    android:layout_width="match_parent"
 	    android:layout_height="match_parent"
+	    android:background="#99000000"		
         >
         
     </RelativeLayout>

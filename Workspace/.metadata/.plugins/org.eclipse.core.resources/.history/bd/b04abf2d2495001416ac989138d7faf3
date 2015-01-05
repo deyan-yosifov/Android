@@ -13,7 +13,7 @@ import android.view.View;
 public class PlaygroundView extends View {
 
 	private static final Logger logger = new Logger("PlaygroundView");
-	private static final int PlaygroundColor = Color.parseColor("#99000000");
+	private static final int PlaygroundColor = Color.parseColor("#9900ff00");
 	private final Paint paint;
 	private float playgroundStrokeWidth;
 	private int width;

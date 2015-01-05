@@ -12,8 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 	    android:id="@+id/score_view"
-        android:textSize="25sp"
-        android:layout_centerHorizontal="true"
+        android:background="#99888888"
         android:text="@string/hello_world" />
     
     <RelativeLayout 
@@ -21,6 +20,7 @@
         android:layout_below="@id/score_view"
 	    android:layout_width="match_parent"
 	    android:layout_height="match_parent"
+	    android:background="#9900ff00"		
         >
         
     </RelativeLayout>

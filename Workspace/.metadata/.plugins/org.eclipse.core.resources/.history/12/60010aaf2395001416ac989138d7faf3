@@ -13,7 +13,6 @@ import android.view.View;
 public class PlaygroundView extends View {
 
 	private static final Logger logger = new Logger("PlaygroundView");
-	private static final int PlaygroundColor = Color.parseColor("#99000000");
 	private final Paint paint;
 	private float playgroundStrokeWidth;
 	private int width;
@@ -40,6 +39,7 @@ public class PlaygroundView extends View {
 		Game game = GameApplication.getGame();
 		this.applyPlaygroundTransformation(game);
 
+//		canvas.drawColor(Color.BLACK);
 		this.drawPlaygroundBounds(game);	
 		this.drawCircle(game.target);	
 		this.drawCircle(game.ball);
@@ -108,11 +108,6 @@ public class PlaygroundView extends View {
 		RectF rect = game.rectangle;
 		float w = this.playgroundStrokeWidth / this.scale / 2.0f;
 		RectF enlargedRect = new RectF(rect.left - w, rect.top - w, rect.right + w, rect.bottom + w);
-		
-		this.setColor(PlaygroundColor);
-		this.setStyle(Paint.Style.FILL_AND_STROKE);
-		this.setStrokeWidth(this.playgroundStrokeWidth);
-		this.canvas.drawRect(enlargedRect, this.paint);
 		
 		this.setColor(Color.BLUE);
 		this.setStyle(Paint.Style.STROKE);

@@ -13,7 +13,6 @@ import android.view.View;
 public class PlaygroundView extends View {
 
 	private static final Logger logger = new Logger("PlaygroundView");
-	private static final int PlaygroundColor = Color.parseColor("#99000000");
 	private final Paint paint;
 	private float playgroundStrokeWidth;
 	private int width;
@@ -34,12 +33,12 @@ public class PlaygroundView extends View {
 		this.canvas = canvas;
 		this.width = this.canvas.getWidth();
 		this.height = this.canvas.getHeight();
-		this.playgroundStrokeWidth = Math.min(this.width, this.height) / 20;
 		logger.log("Canvas size: (" + this.width + "; " + this.height + ")");
 
 		Game game = GameApplication.getGame();
 		this.applyPlaygroundTransformation(game);
 
+		//canvas.drawColor(Color.CYAN);
 		this.drawPlaygroundBounds(game);	
 		this.drawCircle(game.target);	
 		this.drawCircle(game.ball);
@@ -51,8 +50,8 @@ public class PlaygroundView extends View {
 		int rotation = GameApplication.getRotation();
 		float gameCenterX = game.rectangle.centerX();
 		float gameCenterY = game.rectangle.centerY();
-		float availableWidth = this.width - 2 * this.playgroundStrokeWidth;
-		float availableHeight = this.height - 2 * this.playgroundStrokeWidth;
+		float availableWidth = this.width - 2 * playgroundStrokeWidth;
+		float availableHeight = this.height - 2 * playgroundStrokeWidth;
 		float gameWidth = game.width();
 		float gameHeight = game.height();
 		float angle = 0;
@@ -106,17 +105,12 @@ public class PlaygroundView extends View {
 	
 	private void drawPlaygroundBounds(Game game){
 		RectF rect = game.rectangle;
-		float w = this.playgroundStrokeWidth / this.scale / 2.0f;
+		float w = playgroundStrokeWidth / this.scale / 2.0f;
 		RectF enlargedRect = new RectF(rect.left - w, rect.top - w, rect.right + w, rect.bottom + w);
-		
-		this.setColor(PlaygroundColor);
-		this.setStyle(Paint.Style.FILL_AND_STROKE);
-		this.setStrokeWidth(this.playgroundStrokeWidth);
-		this.canvas.drawRect(enlargedRect, this.paint);
 		
 		this.setColor(Color.BLUE);
 		this.setStyle(Paint.Style.STROKE);
-		this.setStrokeWidth(this.playgroundStrokeWidth);
+		this.setStrokeWidth(playgroundStrokeWidth);
 		this.canvas.drawRect(enlargedRect, this.paint);
 	}	
 }
