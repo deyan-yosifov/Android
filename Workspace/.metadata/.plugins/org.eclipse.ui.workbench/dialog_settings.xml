@@ -4,16 +4,12 @@
 		<item value="1440" key="dialogWidth"/>
 		<item value="759" key="dialogHeight"/>
 		<list key="orderedProviders">
-			<item value="org.eclipse.ui.commands"/>
 		</list>
 		<list key="textArray">
-			<item value="override"/>
 		</list>
 		<list key="orderedElements">
-			<item value="org.eclipse.jdt.ui.edit.text.java.override.methods"/>
 		</list>
 		<list key="textEntries">
-			<item value="1"/>
 		</list>
 	</section>
 	<section name="NewWizardAction">

@@ -36,7 +36,7 @@ public class PlaygroundView extends View {
 		this.drawCircle(canvas, game.ball);
 		this.drawCircle(canvas, game.target);
 		
-		//this.invalidate();
+		this.invalidate();
 	}
 	
 	private void drawCircle(Canvas canvas, ICircleObject circle){

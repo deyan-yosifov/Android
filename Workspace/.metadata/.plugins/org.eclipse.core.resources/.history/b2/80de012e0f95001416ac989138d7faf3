@@ -26,8 +26,7 @@ public class GameApplication extends Application {
 		if(rotation == Surface.ROTATION_90 || rotation == Surface.ROTATION_270){
 			point = new Point(point.y, point.x);
 		}		
-		
-		instance.game = new Game(point.x / (float)point.y);
+		instance.game = new Game(point.x, point.y);
 		
 		return GameApplication.instance.game;
 	}

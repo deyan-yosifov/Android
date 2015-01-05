@@ -2,23 +2,16 @@ package com.dipiuay.bouncingballgame;
 
 public class Game {
 	private static final Logger logger = new Logger("Game class");
-	private static final float actualDistanceInMeters = 20;
+	private static final double actualDistanceInMeters = 20;
 	public final float width;
 	public final float height;
 	public final Ball ball;
 	public final Target target;
 	
 		
-	public Game(float screenRatio){
-		if(screenRatio < 1){
-			this.width = actualDistanceInMeters;
-			this.height = this.width / screenRatio;
-		}
-		else{
-			this.height = actualDistanceInMeters;
-			this.width = this.height * screenRatio;
-		}
-		
+	public Game(float width, float height){
+		this.width = width;
+		this.height = height;
 		this.ball = new Ball();
 		this.target = new Target();
 		
