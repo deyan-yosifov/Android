@@ -45,16 +45,6 @@ public class Algebra {
 		return a.x * b.x  + a.y * b.y;
 	}
 	
-	public static PointF getUnitVector(PointF vector){
-		float length = Algebra.getLength(vector);
-		
-		if(isZero(length)){
-			throw new IllegalArgumentException("Cannot find unit vector of zero!");
-		}
-		
-		return Algebra.multiply(1 / length, vector);
-	}
-	
 	public static float getLength(PointF a){
 		return (float)Math.sqrt(dotProduct(a, a));
 	}

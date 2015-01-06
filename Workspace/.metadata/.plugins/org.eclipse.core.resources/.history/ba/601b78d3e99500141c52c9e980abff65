@@ -2,8 +2,6 @@ package com.dipiuay.bouncingballgame;
 
 import java.util.TimerTask;
 
-import android.graphics.PointF;
-
 public class BallMovementTask extends TimerTask {
 
 	private final Game game;
@@ -15,12 +13,10 @@ public class BallMovementTask extends TimerTask {
 	@Override
 	public void run() {
 		float time = Game.gameTimerInterval / 1000f;
-		Ball ball = this.game.ball;
-		float distance = Algebra.getLength(ball.speed) * time;
+		float distance = Algebra.getLength(this.game.ball.speed) * time;
 		
-		if(!Algebra.isZero(distance)){
-			PointF delta = Algebra.multiply(time, ball.speed);
-			ball.position = Algebra.add(ball.position, delta);
+		if(distance > 0){
+			
 		
 			game.onChange();
 		}
