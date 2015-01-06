@@ -1,5 +1,6 @@
 package com.dipiuay.bouncingballgame;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -10,7 +11,7 @@ import android.graphics.RectF;
 import android.view.Surface;
 import android.view.View;
 
-public class PlaygroundView extends View {
+public class PlaygroundView extends View implements GameListener {
 
 	private static final Logger logger = new Logger("PlaygroundView");
 	private static final int PlaygroundColor = Color.parseColor("#99000000");
@@ -20,6 +21,7 @@ public class PlaygroundView extends View {
 	private int height;
 	private float scale;
 	private Canvas canvas;
+	private GameInfo lastGameInfo;	
 	
 	public PlaygroundView(Context context) {
 		super(context);
@@ -31,30 +33,33 @@ public class PlaygroundView extends View {
 	protected void onDraw(Canvas canvas) {
 		logger.log("onDraw");
 
-		this.canvas = canvas;
-		this.width = this.canvas.getWidth();
-		this.height = this.canvas.getHeight();
-		this.playgroundStrokeWidth = Math.min(this.width, this.height) / 20;
-		logger.log("Canvas size: (" + this.width + "; " + this.height + ")");
-
-		Game game = GameApplication.getGame();
-		this.applyPlaygroundTransformation(game);
-
-		this.drawPlaygroundBounds(game);	
-		this.drawCircle(game.target);	
-		this.drawCircle(game.ball);
+		GameInfo game = this.lastGameInfo;
 		
-		this.invalidate();
+		if(game != null){			
+			this.canvas = canvas;
+			this.width = this.canvas.getWidth();
+			this.height = this.canvas.getHeight();
+			this.playgroundStrokeWidth = Math.min(this.width, this.height) / 20;
+			logger.log("Canvas size: (" + this.width + "; " + this.height + ")");
+	
+			this.applyPlaygroundTransformation(game);
+	
+			this.drawPlaygroundBounds(game);	
+			this.drawCircle(game.target);	
+			this.drawCircle(game.ball);			
+		}
+				
+		this.invalidate();	
 	}
 	
-	private void applyPlaygroundTransformation(Game game){
+	private void applyPlaygroundTransformation(GameInfo game){
 		int rotation = GameApplication.getRotation();
-		float gameCenterX = game.rectangle.centerX();
-		float gameCenterY = game.rectangle.centerY();
+		float gameCenterX = game.playground.centerX();
+		float gameCenterY = game.playground.centerY();
 		float availableWidth = this.width - 2 * this.playgroundStrokeWidth;
 		float availableHeight = this.height - 2 * this.playgroundStrokeWidth;
-		float gameWidth = game.width();
-		float gameHeight = game.height();
+		float gameWidth = game.playground.width();
+		float gameHeight = game.playground.height();
 		float angle = 0;
 		
 		switch(rotation){
@@ -104,8 +109,8 @@ public class PlaygroundView extends View {
 		this.canvas.drawCircle(position.x, position.y, radius, this.paint);
 	}
 	
-	private void drawPlaygroundBounds(Game game){
-		RectF rect = game.rectangle;
+	private void drawPlaygroundBounds(GameInfo game){
+		RectF rect = game.playground;
 		float w = this.playgroundStrokeWidth / this.scale / 2.0f;
 		RectF enlargedRect = new RectF(rect.left - w, rect.top - w, rect.right + w, rect.bottom + w);
 		
@@ -118,5 +123,11 @@ public class PlaygroundView extends View {
 		this.setStyle(Paint.Style.STROKE);
 		this.setStrokeWidth(this.playgroundStrokeWidth);
 		this.canvas.drawRect(enlargedRect, this.paint);
+	}
+
+	@Override
+	public void OnGameChanged(GameInfo gameInfo) {
+		this.lastGameInfo = gameInfo;
+		logger.log("OnGameChanged");
 	}	
 }

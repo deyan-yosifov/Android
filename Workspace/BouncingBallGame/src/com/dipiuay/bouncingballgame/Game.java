@@ -1,14 +1,23 @@
 package com.dipiuay.bouncingballgame;
 
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import android.graphics.RectF;
 
 public class Game {
 	private static final Logger logger = new Logger("Game class");
 	private static final float actualDistanceInMeters = 20;
+	private final Timer timer;	
+	private final TimerTask timerTask;
+	private boolean isPlaying;
+	private GameListener gameListener;
+	
+	public static final long gameTimerInterval = 10;
 	public final RectF rectangle;
 	public final Ball ball;
 	public final Target target;
-	
 		
 	public Game(float screenRatio){
 		float width, height;
@@ -27,7 +36,42 @@ public class Game {
 		
 		logger.log("New Game with size: (" + this.width() + ", " + this.height() + ")");
 		
+		this.timer = new Timer();
+		this.timerTask = new BallMovementTask(this);
+		this.gameListener = null;
+		this.isPlaying = false;
+		
 		this.initializePlayground();
+	}
+	
+	public void play(GameListener listener){
+		if(!this.isPlaying){
+			this.isPlaying = true;			
+			this.registerListener(listener);
+			this.timer.schedule(this.timerTask, new Date(), Game.gameTimerInterval);
+		}
+	}
+	
+	public void pause(){
+		if(this.isPlaying){
+			this.timer.cancel();			
+			this.unregisterListener();
+			this.isPlaying = false;
+		}
+	}
+	
+	public void onChange(){
+		if(this.gameListener != null){
+			this.gameListener.OnGameChanged(new GameInfo(this));
+		}
+	}
+	
+	private void registerListener(GameListener listener){
+		this.gameListener = listener;
+	}
+	
+	private void unregisterListener(){
+		this.gameListener = null;
 	}
 	
 	public float width() {

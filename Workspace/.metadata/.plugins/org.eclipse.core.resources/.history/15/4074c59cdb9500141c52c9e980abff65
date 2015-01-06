@@ -1,0 +1,13 @@
+package com.dipiuay.bouncingballgame;
+
+import android.graphics.RectF;
+
+public class GameInfo {
+	public ICircleObject ball;
+	public ICircleObject target;
+	public RectF playground;
+	
+	public GameInfo(Game game){
+		
+	}
+}

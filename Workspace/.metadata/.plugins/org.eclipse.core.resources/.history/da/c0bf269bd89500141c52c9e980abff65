@@ -1,0 +1,5 @@
+package com.dipiuay.bouncingballgame;
+
+public interface GameListener {
+
+}

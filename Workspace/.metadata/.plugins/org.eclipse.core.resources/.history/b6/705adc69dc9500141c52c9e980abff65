@@ -1,0 +1,29 @@
+package com.dipiuay.bouncingballgame;
+
+import android.graphics.Color;
+import android.graphics.PointF;
+import android.graphics.RectF;
+
+public class GameInfo {
+	public final ICircleObject ball;
+	public final ICircleObject target;
+	public final RectF playground;
+	
+	public GameInfo(Game game){
+			this.ball = new ICircleObject(){
+				@Override
+				public PointF getPosition() {
+					return Algebra.multiply(1, game.ball.getPosition());
+				}
+				@Override
+				public float getRadius() {
+					return game.ball.getRadius();
+				}
+				@Override
+				public int getColor() {
+					return game.ball.getColor();
+				}
+			};
+		}
+	}
+}

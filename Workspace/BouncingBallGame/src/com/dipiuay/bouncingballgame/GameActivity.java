@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 public class GameActivity extends ActionBarActivity {
 	
 	private static final Logger logger = new Logger("GameActivity");
+	private GameListener gameListener;
 	
 	public GameActivity(){
 		logger.log("constructor call");
@@ -23,6 +24,7 @@ public class GameActivity extends ActionBarActivity {
 		ViewGroup viewGroup = (ViewGroup) this.findViewById(R.id.playground_owner);
 		PlaygroundView playground = new PlaygroundView(this);
 		viewGroup.addView(playground);
+		this.gameListener = playground;
 	}
 
 	@Override
@@ -30,6 +32,18 @@ public class GameActivity extends ActionBarActivity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.game, menu);
 		return true;
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		GameApplication.getGame().play(this.gameListener);
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		GameApplication.getGame().pause();
 	}
 
 	@Override

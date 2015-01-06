@@ -19,3 +19,6 @@
 1420406877663	Rename type 'ICircle'
 1420486986644	Rename field 'heigth'
 1420493372909	Rename field 'PlaygroundStrokeWidth'
+1420574292135	Rename field 'isInvalidated'
+1420576139585	Rename method 'onGameChange'
+1420576297512	Rename field 'shouldRedrawPlayground'
