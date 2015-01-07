@@ -10,8 +10,8 @@ import android.graphics.RectF;
 public class Game {
 	private static final Logger logger = new Logger("Game class");
 	private static final float actualDistanceInMeters = 10;
-	private Timer timer;	
-	private TimerTask timerTask;
+	private final Timer timer;	
+	private final TimerTask timerTask;
 	private boolean isPlaying;
 	private GameListener gameListener;
 	private PointF accelerationAccumolator;
@@ -40,6 +40,8 @@ public class Game {
 		
 		logger.log("New Game with size: (" + this.width() + ", " + this.height() + ")");
 		
+		this.timer = new Timer();
+		this.timerTask = new BallMovementTask(this);
 		this.gameListener = null;
 		this.isPlaying = false;
 		this.accelerationAccumolator = new PointF();
@@ -63,9 +65,6 @@ public class Game {
 		if(!this.isPlaying){
 			this.isPlaying = true;			
 			this.registerListener(listener);
-			
-			this.timerTask = new BallMovementTask(this);
-			this.timer = new Timer();			
 			this.timer.schedule(this.timerTask, new Date(), Game.gameTimerInterval);
 		}
 	}
@@ -76,9 +75,6 @@ public class Game {
 			this.timerTask.cancel();
 			this.timer.cancel();	
 			this.timer.purge();
-			this.timerTask = null;
-			this.timer = null;
-			
 			this.isPlaying = false;
 		}
 	}

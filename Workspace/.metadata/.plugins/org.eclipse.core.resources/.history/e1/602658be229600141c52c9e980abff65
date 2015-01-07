@@ -76,9 +76,6 @@ public class Game {
 			this.timerTask.cancel();
 			this.timer.cancel();	
 			this.timer.purge();
-			this.timerTask = null;
-			this.timer = null;
-			
 			this.isPlaying = false;
 		}
 	}

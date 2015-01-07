@@ -63,9 +63,8 @@ public class Game {
 		if(!this.isPlaying){
 			this.isPlaying = true;			
 			this.registerListener(listener);
+			this.timerTask = new 
 			
-			this.timerTask = new BallMovementTask(this);
-			this.timer = new Timer();			
 			this.timer.schedule(this.timerTask, new Date(), Game.gameTimerInterval);
 		}
 	}
@@ -76,9 +75,6 @@ public class Game {
 			this.timerTask.cancel();
 			this.timer.cancel();	
 			this.timer.purge();
-			this.timerTask = null;
-			this.timer = null;
-			
 			this.isPlaying = false;
 		}
 	}
