@@ -23,25 +23,24 @@ public class PlaygroundView extends View {
 	private PointF transformationCenter;
 	private RectF enlargedPlayground;
 	private GameInfo lastGameInfo;	
-	private boolean isPlaygroundTransformationCaclulated;
 	
 	public PlaygroundView(Context context) {
 		super(context);
 		
 		this.paint = new Paint();
-		this.isPlaygroundTransformationCaclulated = false;
 	}
 
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 		super.onSizeChanged(w, h, oldw, oldh);
-			
+		
+		GameInfo game = this.lastGameInfo;	
 		this.width = w;
 		this.height = h;
 		logger.log("OnSizeChanged size: (" + this.width + "; " + this.height + ")");
-
-		GameInfo game = this.lastGameInfo;
+		
 		if(game != null){		
+	
 			this.calculatePlaygroundTransformation(game.playground);		
 		}
 	}
@@ -140,10 +139,6 @@ public class PlaygroundView extends View {
 
 	public void OnGameChanged(GameInfo gameInfo) {
 		this.lastGameInfo = gameInfo;
-		if(!this.isPlaygroundTransformationCaclulated){		
-			this.calculatePlaygroundTransformation(gameInfo.playground);		
-		}
-		
 		logger.log("OnGameChanged");
 	}	
 }

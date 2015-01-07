@@ -9,8 +9,6 @@ import android.view.ViewGroup;
 public class GameActivity extends ActionBarActivity implements GameListener {
 	
 	private static final Logger logger = new Logger("GameActivity");
-	private PlaygroundView playground;
-	private Game game;
 	
 	public GameActivity(){
 		logger.log("constructor call");
@@ -23,10 +21,8 @@ public class GameActivity extends ActionBarActivity implements GameListener {
 		setContentView(R.layout.activity_game);
 		
 		ViewGroup viewGroup = (ViewGroup) this.findViewById(R.id.playground_owner);
-		this.playground = new PlaygroundView(this);
-		viewGroup.addView(this.playground);
-		
-		this.game = GameApplication.getGame();
+		PlaygroundView playground = new PlaygroundView(this);
+		viewGroup.addView(playground);
 	}
 
 	@Override
@@ -38,16 +34,14 @@ public class GameActivity extends ActionBarActivity implements GameListener {
 
 	@Override
 	protected void onResume() {
-		logger.log("onResume");
 		super.onResume();
-		this.game.play(this);
+		GameApplication.getGame().play(this);
 	}
 
 	@Override
 	protected void onPause() {
-		logger.log("onPause");
 		super.onPause();
-		this.game.pause();
+		GameApplication.getGame().pause();
 	}
 
 	@Override
@@ -60,10 +54,5 @@ public class GameActivity extends ActionBarActivity implements GameListener {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
-	}
-
-	@Override
-	public void OnGameChanged(GameInfo gameInfo) {
-		this.playground.OnGameChanged(gameInfo);		
 	}
 }

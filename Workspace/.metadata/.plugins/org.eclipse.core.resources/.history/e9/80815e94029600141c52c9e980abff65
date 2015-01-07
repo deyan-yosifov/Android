@@ -23,26 +23,26 @@ public class PlaygroundView extends View {
 	private PointF transformationCenter;
 	private RectF enlargedPlayground;
 	private GameInfo lastGameInfo;	
-	private boolean isPlaygroundTransformationCaclulated;
 	
 	public PlaygroundView(Context context) {
 		super(context);
 		
 		this.paint = new Paint();
-		this.isPlaygroundTransformationCaclulated = false;
 	}
 
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 		super.onSizeChanged(w, h, oldw, oldh);
-			
-		this.width = w;
-		this.height = h;
-		logger.log("OnSizeChanged size: (" + this.width + "; " + this.height + ")");
-
+		
 		GameInfo game = this.lastGameInfo;
-		if(game != null){		
-			this.calculatePlaygroundTransformation(game.playground);		
+		
+		if(game != null){			
+			this.width = w;
+			this.height = h;
+			this.playgroundStrokeWidth = Math.min(this.width, this.height) / 20;
+			logger.log("OnSizeChanged size: (" + this.width + "; " + this.height + ")");
+	
+			this.calculatePlaygroundTransformation(game);		
 		}
 	}
 
@@ -53,7 +53,6 @@ public class PlaygroundView extends View {
 		GameInfo game = this.lastGameInfo;
 		
 		if(game != null){	
-			//logger.log("Is canvas matrix identity: " + (this.canvas.getMatrix().isIdentity() ? "yes" : "no"));
 			canvas.translate(this.translation.x, this.translation.y);
 			canvas.rotate(this.angle, this.transformationCenter.x, this.transformationCenter.y);
 			canvas.scale(this.scale, this.scale, this.transformationCenter.x, this.transformationCenter.y);
@@ -66,11 +65,11 @@ public class PlaygroundView extends View {
 		this.invalidate();	
 	}
 	
-	private void calculatePlaygroundTransformation(RectF playground){
+	private void calculatePlaygroundTransformation(GameInfo game){
 		int rotation = GameApplication.getRotation();
+		RectF playground = game.playground;
 		float gameCenterX = playground.centerX();
 		float gameCenterY = playground.centerY();
-		this.playgroundStrokeWidth = Math.min(this.width, this.height) / 20;
 		float availableWidth = this.width - 2 * this.playgroundStrokeWidth;
 		float availableHeight = this.height - 2 * this.playgroundStrokeWidth;
 		float gameWidth = playground.width();
@@ -140,10 +139,6 @@ public class PlaygroundView extends View {
 
 	public void OnGameChanged(GameInfo gameInfo) {
 		this.lastGameInfo = gameInfo;
-		if(!this.isPlaygroundTransformationCaclulated){		
-			this.calculatePlaygroundTransformation(gameInfo.playground);		
-		}
-		
 		logger.log("OnGameChanged");
 	}	
 }

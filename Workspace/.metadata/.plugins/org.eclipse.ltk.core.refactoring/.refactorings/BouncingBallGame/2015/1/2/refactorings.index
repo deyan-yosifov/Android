@@ -22,3 +22,5 @@
 1420574292135	Rename field 'isInvalidated'
 1420576139585	Rename method 'onGameChange'
 1420576297512	Rename field 'shouldRedrawPlayground'
+1420589351931	Rename method 'applyPlaygroundTransformation'
+1420589812489	Rename field 'playgroundEnlargedRect'

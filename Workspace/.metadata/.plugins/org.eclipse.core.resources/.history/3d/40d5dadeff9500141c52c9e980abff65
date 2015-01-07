@@ -18,32 +18,19 @@ public class PlaygroundView extends View {
 	private int width;
 	private int height;
 	private float scale;
-	private float angle;
-	private PointF translation;
-	private PointF transformationCenter;
-	private RectF enlargedPlayground;
 	private GameInfo lastGameInfo;	
-	private boolean isPlaygroundTransformationCaclulated;
 	
 	public PlaygroundView(Context context) {
 		super(context);
 		
 		this.paint = new Paint();
-		this.isPlaygroundTransformationCaclulated = false;
 	}
 
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 		super.onSizeChanged(w, h, oldw, oldh);
-			
-		this.width = w;
-		this.height = h;
-		logger.log("OnSizeChanged size: (" + this.width + "; " + this.height + ")");
-
-		GameInfo game = this.lastGameInfo;
-		if(game != null){		
-			this.calculatePlaygroundTransformation(game.playground);		
-		}
+		
+		
 	}
 
 	@Override
@@ -52,29 +39,31 @@ public class PlaygroundView extends View {
 
 		GameInfo game = this.lastGameInfo;
 		
-		if(game != null){	
-			//logger.log("Is canvas matrix identity: " + (this.canvas.getMatrix().isIdentity() ? "yes" : "no"));
-			canvas.translate(this.translation.x, this.translation.y);
-			canvas.rotate(this.angle, this.transformationCenter.x, this.transformationCenter.y);
-			canvas.scale(this.scale, this.scale, this.transformationCenter.x, this.transformationCenter.y);
-			
-			this.drawPlaygroundBounds(canvas);	
-			this.drawCircle(canvas, game.target);	
-			this.drawCircle(canvas, game.ball);			
+		if(game != null){			
+			this.canvas = canvas;
+			this.width = this.canvas.getWidth();
+			this.height = this.canvas.getHeight();
+			this.playgroundStrokeWidth = Math.min(this.width, this.height) / 20;
+			logger.log("Canvas size: (" + this.width + "; " + this.height + ")");
+	
+			this.applyPlaygroundTransformation(game);
+	
+			this.drawPlaygroundBounds(game);	
+			this.drawCircle(game.target);	
+			this.drawCircle(game.ball);			
 		}
 				
 		this.invalidate();	
 	}
 	
-	private void calculatePlaygroundTransformation(RectF playground){
+	private void applyPlaygroundTransformation(GameInfo game){
 		int rotation = GameApplication.getRotation();
-		float gameCenterX = playground.centerX();
-		float gameCenterY = playground.centerY();
-		this.playgroundStrokeWidth = Math.min(this.width, this.height) / 20;
+		float gameCenterX = game.playground.centerX();
+		float gameCenterY = game.playground.centerY();
 		float availableWidth = this.width - 2 * this.playgroundStrokeWidth;
 		float availableHeight = this.height - 2 * this.playgroundStrokeWidth;
-		float gameWidth = playground.width();
-		float gameHeight = playground.height();
+		float gameWidth = game.playground.width();
+		float gameHeight = game.playground.height();
 		float angle = 0;
 		
 		switch(rotation){
@@ -95,13 +84,11 @@ public class PlaygroundView extends View {
 				this.scale = Math.min(availableWidth / gameHeight, availableHeight / gameWidth);
 				break;
 		}
-						
-		this.translation = new PointF(this.width / 2.0f - gameCenterX, this.height / 2.0f - gameCenterY);
-		this.angle = - angle;
-		this.transformationCenter = new PointF(gameCenterX, gameCenterY);			
-
-		float d = this.playgroundStrokeWidth / this.scale / 2.0f;
-		this.enlargedPlayground = new RectF(playground.left - d, playground.top - d, playground.right + d, playground.bottom + d);
+				
+		//logger.log("Is canvas matrix identity: " + (this.canvas.getMatrix().isIdentity() ? "yes" : "no"));
+		this.canvas.translate(this.width / 2.0f - gameCenterX, this.height / 2.0f - gameCenterY);
+		this.canvas.rotate(-angle, gameCenterX, gameCenterY);
+		this.canvas.scale(scale, scale, gameCenterX, gameCenterY);
 	}
 	
 	private void setColor(int color){
@@ -116,34 +103,34 @@ public class PlaygroundView extends View {
 		this.paint.setStrokeWidth(width / this.scale);
 	}
 	
-	private void drawCircle(Canvas canvas, ICircleObject circle){
+	private void drawCircle(ICircleObject circle){
 		PointF position = circle.getPosition();
 		float radius = circle.getRadius();
 		
 		this.setColor(circle.getColor());
 		this.setStyle(Paint.Style.FILL);
 		this.setStrokeWidth(0);
-		canvas.drawCircle(position.x, position.y, radius, this.paint);
+		this.canvas.drawCircle(position.x, position.y, radius, this.paint);
 	}
 	
-	private void drawPlaygroundBounds(Canvas canvas){		
+	private void drawPlaygroundBounds(GameInfo game){
+		RectF rect = game.playground;
+		float w = this.playgroundStrokeWidth / this.scale / 2.0f;
+		RectF enlargedRect = new RectF(rect.left - w, rect.top - w, rect.right + w, rect.bottom + w);
+		
 		this.setColor(PlaygroundColor);
 		this.setStyle(Paint.Style.FILL_AND_STROKE);
 		this.setStrokeWidth(this.playgroundStrokeWidth);
-		canvas.drawRect(this.enlargedPlayground, this.paint);
+		this.canvas.drawRect(enlargedRect, this.paint);
 		
 		this.setColor(Color.BLUE);
 		this.setStyle(Paint.Style.STROKE);
 		this.setStrokeWidth(this.playgroundStrokeWidth);
-		canvas.drawRect(this.enlargedPlayground, this.paint);
+		this.canvas.drawRect(enlargedRect, this.paint);
 	}
 
 	public void OnGameChanged(GameInfo gameInfo) {
 		this.lastGameInfo = gameInfo;
-		if(!this.isPlaygroundTransformationCaclulated){		
-			this.calculatePlaygroundTransformation(gameInfo.playground);		
-		}
-		
 		logger.log("OnGameChanged");
 	}	
 }
