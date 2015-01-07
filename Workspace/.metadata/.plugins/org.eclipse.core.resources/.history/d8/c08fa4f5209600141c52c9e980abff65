@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Bouncing Ball Game by Deyan Yosifov</string>
+    <string name="app_name">Bouncing Ball Game</string>
     <string name="hello_world">Hello world!</string>
     <string name="no_accelerometer_found">Did not detected any accelerometor sensor!</string>
     <string name="welcome_header">Welcome to Bouncing Ball Game!</string>

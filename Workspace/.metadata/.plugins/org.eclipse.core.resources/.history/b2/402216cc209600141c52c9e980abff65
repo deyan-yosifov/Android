@@ -8,8 +8,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">#FF9900</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">30sp</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:padding">10dp</item>
         <item name="android:layout_centerHorizontal">true</item>
     </style>
