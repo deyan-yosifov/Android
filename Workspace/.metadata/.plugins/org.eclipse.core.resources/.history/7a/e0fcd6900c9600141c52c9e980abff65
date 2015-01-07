@@ -17,7 +17,7 @@ public class GameActivity extends ActionBarActivity implements GameListener, Acc
 	private static final Logger logger = new Logger("GameActivity");
 	private static final double noise = 0.6;
 	private AccelerometerManager accelerometerManager;
-	private PlaygroundView playground;
+//	private PlaygroundView playground;
 	private Game game;
 	
 	public GameActivity(){
@@ -31,13 +31,13 @@ public class GameActivity extends ActionBarActivity implements GameListener, Acc
 		setContentView(R.layout.activity_game);
 		
 		ViewGroup viewGroup = (ViewGroup) this.findViewById(R.id.playground_owner);
-		this.playground = new PlaygroundView(this);
-		viewGroup.addView(this.playground);
+//		this.playground = new PlaygroundView(this);
+//		viewGroup.addView(this.playground);
 		
 		this.game = GameApplication.getGame();
 		
 		SensorManager sensorManager = (SensorManager) getSystemService(this.SENSOR_SERVICE);		
-		this.accelerometerManager = new AccelerometerManager(this, sensorManager);
+//		this.accelerometerManager = new AccelerometerManager(this, sensorManager);
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class GameActivity extends ActionBarActivity implements GameListener, Acc
 	protected void onResume() {
 		logger.log("onResume");
 		super.onResume();
-		this.game.play(this);
+//		this.game.play(this);
 		this.accelerometerManager.startListening();
 	}
 
@@ -77,7 +77,7 @@ public class GameActivity extends ActionBarActivity implements GameListener, Acc
 
 	@Override
 	public void OnGameChanged(GameInfo gameInfo) {
-		this.playground.OnGameChanged(gameInfo);		
+//		this.playground.OnGameChanged(gameInfo);		
 	}
 
 	@Override

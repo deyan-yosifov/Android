@@ -27,13 +27,10 @@ public class BallMovementTask extends TimerTask {
 		}
 		
 		PointF acceleration = this.game.popAcceleration();
-		
-		if(!Algebra.isZero(acceleration)){
-			PointF deltaSpeed = Algebra.multiply(time, acceleration);
-			logger.log("acceleration: " + acceleration + "; deltaSpeed: " + deltaSpeed + "; ballSpeedBefore: " + ball.speed);
-			ball.speed = Algebra.add(ball.speed, deltaSpeed);
-			logger.log("ballSpeedAfter: " + ball.speed);
-		}
+		PointF deltaSpeed = Algebra.multiply(time, acceleration);
+		logger.log("acceleration: " + acceleration + "; deltaSpeed: " + deltaSpeed + "; ballSpeedBefore: " + ball.speed);
+		ball.speed = Algebra.add(ball.speed, deltaSpeed);
+		logger.log("ballSpeedAfter: " + ball.speed);
 	}
 
 }

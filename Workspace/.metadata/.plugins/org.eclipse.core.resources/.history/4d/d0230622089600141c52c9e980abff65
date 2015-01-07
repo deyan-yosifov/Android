@@ -49,28 +49,6 @@ public class GameApplication extends Application {
 		return instance.display.getRotation();
 	}
 	
-	public static float getRotationAngle(){
-		int rotation = getRotation();
-		float angle = 0;
-		
-		switch(rotation){
-			case Surface.ROTATION_0:
-				angle = 0;
-				break;
-			case Surface.ROTATION_90:
-				angle = 90;
-				break;
-			case Surface.ROTATION_180:
-				angle = 180;
-				break;
-			case Surface.ROTATION_270:
-				angle = 270;
-				break;
-		}
-		
-		return angle;
-	}
-	
 	@Override
 	public void onCreate() {
 		logger.log("OnCreate");

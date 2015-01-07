@@ -68,7 +68,6 @@ public class PlaygroundView extends View {
 	
 	private void calculatePlaygroundTransformation(RectF playground){
 		int rotation = GameApplication.getRotation();
-		float angle = GameApplication.getRotationAngle();
 		float gameCenterX = playground.centerX();
 		float gameCenterY = playground.centerY();
 		this.playgroundStrokeWidth = Math.min(this.width, this.height) / 20;
@@ -76,14 +75,23 @@ public class PlaygroundView extends View {
 		float availableHeight = this.height - 2 * this.playgroundStrokeWidth;
 		float gameWidth = playground.width();
 		float gameHeight = playground.height();
+		float angle = 0;
 		
 		switch(rotation){
 			case Surface.ROTATION_0:
-			case Surface.ROTATION_180:
+				angle = 0;
 				this.scale = Math.min(availableWidth / gameWidth, availableHeight / gameHeight);
 				break;
 			case Surface.ROTATION_90:
+				angle = 90;
+				this.scale = Math.min(availableWidth / gameHeight, availableHeight / gameWidth);
+				break;
+			case Surface.ROTATION_180:
+				angle = 180;
+				this.scale = Math.min(availableWidth / gameWidth, availableHeight / gameHeight);
+				break;
 			case Surface.ROTATION_270:
+				angle = 270;
 				this.scale = Math.min(availableWidth / gameHeight, availableHeight / gameWidth);
 				break;
 		}

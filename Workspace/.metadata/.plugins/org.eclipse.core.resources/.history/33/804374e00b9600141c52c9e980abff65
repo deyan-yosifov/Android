@@ -37,7 +37,7 @@ public class GameActivity extends ActionBarActivity implements GameListener, Acc
 		this.game = GameApplication.getGame();
 		
 		SensorManager sensorManager = (SensorManager) getSystemService(this.SENSOR_SERVICE);		
-		this.accelerometerManager = new AccelerometerManager(this, sensorManager);
+//		this.accelerometerManager = new AccelerometerManager(this, sensorManager);
 	}
 
 	@Override
@@ -84,7 +84,6 @@ public class GameActivity extends ActionBarActivity implements GameListener, Acc
 	public void onAccelerometerChanged(AccelerometerEvent accelerometerEvent) {
 		float ax = (float)accelerometerEvent.linearAcceleration.x;
 		float ay = (float)accelerometerEvent.linearAcceleration.y;
-		logger.log("ax: " + ax + "; ay: " + ay);
 		
 		if(Algebra.getLength(new PointF(ax, ay)) > noise){
 			float angle = GameApplication.getRotationAngle();
@@ -93,9 +92,8 @@ public class GameActivity extends ActionBarActivity implements GameListener, Acc
 			matrix.postRotate(angle);
 			float[] point = { ax, ay };			
 			matrix.mapPoints(point);
-			PointF orientedAcceleration = new PointF(point[0], point[1]);
-			logger.log("orientedAcceleration: " + orientedAcceleration);
-			this.game.accelerate(orientedAcceleration);
+			
+			this.game.accelerate(new PointF(point[0], point[1]));
 		}
 	}
 }

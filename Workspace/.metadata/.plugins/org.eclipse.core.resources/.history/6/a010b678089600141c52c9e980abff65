@@ -84,6 +84,7 @@ public class PlaygroundView extends View {
 				break;
 			case Surface.ROTATION_90:
 			case Surface.ROTATION_270:
+				angle = 270;
 				this.scale = Math.min(availableWidth / gameHeight, availableHeight / gameWidth);
 				break;
 		}

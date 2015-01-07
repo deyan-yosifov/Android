@@ -16,7 +16,7 @@ public class Game {
 	private GameListener gameListener;
 	private PointF accelerationAccumolator;
 	
-	public static final long gameTimerInterval = 500;
+	public static final long gameTimerInterval = 10;
 	public final RectF rectangle;
 	public final Ball ball;
 	public final Target target;	

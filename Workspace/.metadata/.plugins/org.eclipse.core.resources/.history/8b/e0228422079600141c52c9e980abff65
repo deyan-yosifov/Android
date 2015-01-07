@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import android.graphics.PointF;
 import android.graphics.RectF;
 
 public class Game {
@@ -14,12 +13,11 @@ public class Game {
 	private final TimerTask timerTask;
 	private boolean isPlaying;
 	private GameListener gameListener;
-	private PointF accelerationAccumolator;
 	
-	public static final long gameTimerInterval = 500;
+	public static final long gameTimerInterval = 10;
 	public final RectF rectangle;
 	public final Ball ball;
-	public final Target target;	
+	public final Target target;
 		
 	public Game(float screenRatio){
 		float width, height;
@@ -42,20 +40,8 @@ public class Game {
 		this.timerTask = new BallMovementTask(this);
 		this.gameListener = null;
 		this.isPlaying = false;
-		this.accelerationAccumolator = new PointF();
 		
 		this.initializePlayground();
-	}
-	
-	public void accelerate(PointF acceleration){
-		this.accelerationAccumolator = Algebra.add(this.accelerationAccumolator, acceleration);		
-	}
-	
-	public PointF popAcceleration(){
-		PointF acceleration = this.accelerationAccumolator;
-		this.accelerationAccumolator = new PointF();
-		
-		return acceleration;
 	}
 	
 	public void play(GameListener listener){

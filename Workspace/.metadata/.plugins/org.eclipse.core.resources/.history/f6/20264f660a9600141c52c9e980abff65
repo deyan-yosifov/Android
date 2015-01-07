@@ -6,7 +6,6 @@ import android.graphics.PointF;
 
 public class BallMovementTask extends TimerTask {
 
-	private static final Logger logger = new Logger("BallMovementTask");
 	private final Game game;
 	
 	public BallMovementTask(Game game){
@@ -24,15 +23,6 @@ public class BallMovementTask extends TimerTask {
 			ball.position = Algebra.add(ball.position, delta);
 		
 			game.onChange();
-		}
-		
-		PointF acceleration = this.game.popAcceleration();
-		
-		if(!Algebra.isZero(acceleration)){
-			PointF deltaSpeed = Algebra.multiply(time, acceleration);
-			logger.log("acceleration: " + acceleration + "; deltaSpeed: " + deltaSpeed + "; ballSpeedBefore: " + ball.speed);
-			ball.speed = Algebra.add(ball.speed, deltaSpeed);
-			logger.log("ballSpeedAfter: " + ball.speed);
 		}
 	}
 

@@ -7,6 +7,7 @@ import android.graphics.PointF;
 public class BallMovementTask extends TimerTask {
 
 	private static final Logger logger = new Logger("BallMovementTask");
+	private static final float accelerationInterval = 0.2f;
 	private final Game game;
 	
 	public BallMovementTask(Game game){
@@ -29,7 +30,7 @@ public class BallMovementTask extends TimerTask {
 		PointF acceleration = this.game.popAcceleration();
 		
 		if(!Algebra.isZero(acceleration)){
-			PointF deltaSpeed = Algebra.multiply(time, acceleration);
+			PointF deltaSpeed = Algebra.multiply(time / accelerationInterval, acceleration);
 			logger.log("acceleration: " + acceleration + "; deltaSpeed: " + deltaSpeed + "; ballSpeedBefore: " + ball.speed);
 			ball.speed = Algebra.add(ball.speed, deltaSpeed);
 			logger.log("ballSpeedAfter: " + ball.speed);
