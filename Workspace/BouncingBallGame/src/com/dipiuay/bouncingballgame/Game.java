@@ -17,7 +17,7 @@ public class Game {
 	private PointF accelerationAccumolator;
 	
 	public static final int scoreDelta = 10;
-	public static final float maxSpeed = 10;
+	public static final float maxSpeed = 12;
 	public static final long gameTimerInterval = 100;
 	public final RectF rectangle;
 	public final Ball ball;

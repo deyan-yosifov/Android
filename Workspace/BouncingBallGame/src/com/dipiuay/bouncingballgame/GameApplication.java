@@ -9,6 +9,7 @@ import android.view.WindowManager;
 
 public class GameApplication extends Application {
 
+	public static final String ABOUT_TEXT = "This game is created by Deyan Yosifov - student in Faculty of Mathematics and Informatics in Sofia University.";
 	private static GameApplication instance;
 	private static final Logger logger = new Logger("GameApplication");
 	private Display display;

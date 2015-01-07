@@ -1,0 +1,88 @@
+package com.dipiuay.bouncingballgame;
+
+import android.annotation.SuppressLint;
+import android.app.Application;
+import android.graphics.Point;
+import android.view.Display;
+import android.view.Surface;
+import android.view.WindowManager;
+
+public class GameApplication extends Application {
+
+	private static GameApplication instance;
+	private static final Logger logger = new Logger("GameApplication");
+	private Display display;
+	private Game game;
+	
+	public GameApplication(){
+		logger.log("Constructor call");
+		GameApplication.instance = this;
+	}
+	
+	public static Game startNewGame(){
+		logger.log("startNewGame");
+		Point point = getDisplaySize();
+		int rotation = getRotation();		
+		if(rotation == Surface.ROTATION_90 || rotation == Surface.ROTATION_270){
+			point = new Point(point.y, point.x);
+		}		
+		
+		instance.game = new Game(point.x / (float)point.y);
+		
+		return GameApplication.instance.game;
+	}
+	
+	@SuppressLint("NewApi")
+	public static Point getDisplaySize() {
+	    final Point point = new Point();	    
+	    try {
+	    	instance.display.getRealSize(point);
+	    } catch (java.lang.NoSuchMethodError ignore) { // Older device
+	        point.x = instance.display.getWidth();
+	        point.y = instance.display.getHeight();
+	    }
+	    
+	    return point;
+	}
+	
+	public static int getRotation(){
+		return instance.display.getRotation();
+	}
+	
+	public static float getRotationAngle(){
+		int rotation = getRotation();
+		float angle = 0;
+		
+		switch(rotation){
+			case Surface.ROTATION_0:
+				angle = 0;
+				break;
+			case Surface.ROTATION_90:
+				angle = 90;
+				break;
+			case Surface.ROTATION_180:
+				angle = 180;
+				break;
+			case Surface.ROTATION_270:
+				angle = 270;
+				break;
+		}
+		
+		return angle;
+	}
+	
+	@Override
+	public void onCreate() {
+		logger.log("OnCreate");
+		super.onCreate();
+		this.display = ((WindowManager) this.getSystemService(WINDOW_SERVICE)).getDefaultDisplay();
+		startNewGame();
+	}
+	
+	public static Game getGame()
+	{
+		return GameApplication.instance.game;
+	}
+	
+	
+}

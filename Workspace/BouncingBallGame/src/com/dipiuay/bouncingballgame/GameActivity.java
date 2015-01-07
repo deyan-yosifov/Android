@@ -85,7 +85,9 @@ public class GameActivity extends ActionBarActivity implements GameListener, Acc
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
+		if (id == R.id.action_about) {
+        	MessageBoxHelper.Alert(this, GameApplication.ABOUT_TEXT, "About" );
+			
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

@@ -241,6 +241,7 @@ int id accelerometer_length_textView 0x7f050040
 int id accelerometer_x_coordinate_textView 0x7f05003d
 int id accelerometer_y_coordinate_textView 0x7f05003e
 int id accelerometer_z_coordinate_textView 0x7f05003f
+int id action_about 0x7f05005d
 int id action_bar 0x7f05001c
 int id action_bar_activity_content 0x7f050015
 int id action_bar_container 0x7f05001b
@@ -252,7 +253,6 @@ int id action_context_bar 0x7f05001d
 int id action_menu_divider 0x7f050016
 int id action_menu_presenter 0x7f050017
 int id action_mode_close_button 0x7f050024
-int id action_settings 0x7f05005d
 int id activity_chooser_view_content 0x7f050025
 int id always 0x7f05000b
 int id averageDeltaTime_textView 0x7f050056
@@ -374,7 +374,7 @@ int string abc_searchview_description_submit 0x7f0a0007
 int string abc_searchview_description_voice 0x7f0a0008
 int string abc_shareactionprovider_share_with 0x7f0a000c
 int string abc_shareactionprovider_share_with_application 0x7f0a000b
-int string action_settings 0x7f0a0013
+int string action_about 0x7f0a0013
 int string app_name 0x7f0a000d
 int string button_monitor_accelerometer 0x7f0a0012
 int string button_play_game 0x7f0a0011

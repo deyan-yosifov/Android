@@ -1,0 +1,114 @@
+package com.dipiuay.bouncingballgame;
+
+import com.dipiuay.bouncingballgame.AccelerometerManager.AccelerometerEvent;
+import com.dipiuay.bouncingballgame.AccelerometerManager.AccelerometerListener;
+
+import android.support.v7.app.ActionBarActivity;
+import android.graphics.Matrix;
+import android.graphics.PointF;
+import android.hardware.SensorManager;
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+public class GameActivity extends ActionBarActivity implements GameListener, AccelerometerListener {
+	
+	private static final Logger logger = new Logger("GameActivity");
+	private static final double noise = 0.1;
+	private AccelerometerManager accelerometerManager;
+	private PlaygroundView playground;
+	private Game game;
+	private int score;
+	private TextView scoreTextView;	
+	private final Handler handler;
+	
+	public GameActivity(){
+		logger.log("constructor call");
+		this.handler = new Handler();
+	}
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		logger.log("OnCreate");
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_game);
+		
+		this.scoreTextView = (TextView) this.findViewById(R.id.score_view);
+		ViewGroup viewGroup = (ViewGroup) this.findViewById(R.id.playground_owner);
+		this.playground = new PlaygroundView(this);
+		viewGroup.addView(this.playground);
+		
+		this.game = GameApplication.getGame();
+		this.setScore(-1);
+		this.setScore(this.game.score);
+		
+		SensorManager sensorManager = (SensorManager) getSystemService(this.SENSOR_SERVICE);		
+		this.accelerometerManager = new AccelerometerManager(this, sensorManager);
+	}
+	
+	private void setScore(int score){
+		if(this.score != score){
+			this.score = score;
+			this.scoreTextView.setText("Score: " + this.score);
+		}
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.game, menu);
+		return true;
+	}
+
+	@Override
+	protected void onResume() {
+		logger.log("onResume");
+		super.onResume();
+		this.game.play(this);
+		this.accelerometerManager.startListening();
+	}
+
+	@Override
+	protected void onPause() {
+		logger.log("onPause");
+		super.onPause();
+		this.game.pause();
+		this.accelerometerManager.stopListening();
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		int id = item.getItemId();
+		if (id == R.id.action_settings) {
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void OnGameChanged(final GameInfo gameInfo) {
+		this.playground.OnGameChanged(gameInfo);
+		this.handler.post(new Runnable() {
+		      public void run() {
+		    	  setScore(gameInfo.score);
+		       }
+		    });
+	}
+
+	@Override
+	public void onAccelerometerChanged(AccelerometerEvent accelerometerEvent) {
+		float ax = (float)accelerometerEvent.linearAcceleration.x;
+		float ay = (float)accelerometerEvent.linearAcceleration.y;
+		PointF acceleration = new PointF(ax, ay);
+		
+		if(Algebra.getLength(acceleration) > noise){
+			this.game.accelerate(acceleration);
+		}
+	}
+}
