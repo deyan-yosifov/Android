@@ -96,25 +96,25 @@ public class BallMovementTask extends TimerTask {
 		CollisionInfo info = new CollisionInfo();
 		info.distance = Float.MAX_VALUE;
 		
-		float distance = this.collidePointWithWall(offsetRectangle.left, 1, position.x, direction.x);		
+		float distance = this.collidePointWithWall(offsetRectangle.left, position.x, direction.x);		
 		if(distance < info.distance){
 			info.distance = distance;
 			info.collisionNormal = new PointF(1, 0);
 		}
 		
-		distance = this.collidePointWithWall(offsetRectangle.right, -1, position.x, direction.x);		
+		distance = this.collidePointWithWall(offsetRectangle.right, position.x, direction.x);		
 		if(distance < info.distance){
 			info.distance = distance;
 			info.collisionNormal = new PointF(-1, 0);
 		}
 		
-		distance = this.collidePointWithWall(offsetRectangle.top, 1, position.y, direction.y);		
+		distance = this.collidePointWithWall(offsetRectangle.top, position.y, direction.y);		
 		if(distance < info.distance){
 			info.distance = distance;
 			info.collisionNormal = new PointF(0, 1);
 		}
 		
-		distance = this.collidePointWithWall(offsetRectangle.bottom, -1, position.y, direction.y);		
+		distance = this.collidePointWithWall(offsetRectangle.bottom, position.y, direction.y);		
 		if(distance < info.distance){
 			info.distance = distance;
 			info.collisionNormal = new PointF(0, -1);
@@ -123,15 +123,11 @@ public class BallMovementTask extends TimerTask {
 		return info;
 	}
 	
-	private float collidePointWithWall(float wallCoordinate, float wallNormalCoordinate, float positionCoordinate, float directionCoordinate){
+	private float collidePointWithWall(float wallCoordinate, float positionCoordinate, float directionCoordinate){
 		float distance = (wallCoordinate - positionCoordinate) / directionCoordinate;
 		
 		if(distance < 0)
 		{
-			return Float.MAX_VALUE;
-		}
-		
-		if(Algebra.isZero(distance) && (wallNormalCoordinate * directionCoordinate) > 0){			
 			return Float.MAX_VALUE;
 		}
 		

@@ -131,8 +131,9 @@ public class BallMovementTask extends TimerTask {
 			return Float.MAX_VALUE;
 		}
 		
-		if(Algebra.isZero(distance) && (wallNormalCoordinate * directionCoordinate) > 0){			
-			return Float.MAX_VALUE;
+		if(distance == 0){
+			
+			
 		}
 		
 		return distance;

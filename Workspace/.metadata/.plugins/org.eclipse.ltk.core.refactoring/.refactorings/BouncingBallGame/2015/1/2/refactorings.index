@@ -24,3 +24,4 @@
 1420576297512	Rename field 'shouldRedrawPlayground'
 1420589351931	Rename method 'applyPlaygroundTransformation'
 1420589812489	Rename field 'playgroundEnlargedRect'
+1420598082833	Rename method 'move'

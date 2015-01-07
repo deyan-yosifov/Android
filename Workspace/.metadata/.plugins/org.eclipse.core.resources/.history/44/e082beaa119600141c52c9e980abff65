@@ -1,0 +1,60 @@
+package com.dipiuay.bouncingballgame;
+
+import java.util.TimerTask;
+
+import android.graphics.PointF;
+
+public class BallMovementTask extends TimerTask {
+
+	private class CollisionInfo{
+		public float distance;
+		public PointF collisionNormal;
+	}
+	
+	private static final Logger logger = new Logger("BallMovementTask");
+	private final Game game;
+	
+	public BallMovementTask(Game game){
+		this.game = game;
+	}
+	
+	@Override
+	public void run() {
+		float time = Game.gameTimerInterval / 1000f;
+		Ball ball = this.game.ball;
+		float distance = Algebra.getLength(ball.speed) * time;
+		
+		if(!Algebra.isZero(distance)){
+			this.move(distance);		
+			game.onChange();
+		}
+		
+		PointF acceleration = this.game.popAcceleration();
+		
+		if(!Algebra.isZero(acceleration)){
+			PointF deltaSpeed = Algebra.multiply(time, acceleration);
+			logger.log("acceleration: " + acceleration + "; deltaSpeed: " + deltaSpeed + "; ballSpeedBefore: " + ball.speed);
+			PointF speed = Algebra.add(ball.speed, deltaSpeed);
+			
+			if(Algebra.getLength(speed) > Game.maxSpeed){
+				speed = Algebra.multiply(Game.maxSpeed, Algebra.getUnitVector(speed));
+			}			
+			
+			ball.speed = speed;
+			logger.log("ballSpeedAfter: " + ball.speed);
+		}
+	}
+	
+	private void move(float distance){
+		
+	}
+	
+	private CollisionInfo findNextCollision(){
+		CollisionInfo info = new CollisionInfo();
+		
+		
+		
+		return info;
+	}
+
+}
