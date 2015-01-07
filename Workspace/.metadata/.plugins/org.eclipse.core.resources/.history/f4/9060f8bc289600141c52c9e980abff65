@@ -22,12 +22,12 @@ public class GameActivity extends ActionBarActivity implements GameListener, Acc
 	private PlaygroundView playground;
 	private Game game;
 	private int score;
-	private TextView scoreTextView;	
-	private final Handler handler;
+	private TextView scoreTextView;
+	
+	private final Handler handler = new Handler();
 	
 	public GameActivity(){
 		logger.log("constructor call");
-		this.handler = new Handler();
 	}
 	
 	@Override

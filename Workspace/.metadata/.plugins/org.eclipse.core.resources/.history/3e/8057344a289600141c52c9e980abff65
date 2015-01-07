@@ -22,12 +22,17 @@ public class GameActivity extends ActionBarActivity implements GameListener, Acc
 	private PlaygroundView playground;
 	private Game game;
 	private int score;
-	private TextView scoreTextView;	
-	private final Handler handler;
+	private TextView scoreTextView;
+	
+	private final Handler handler = new Handler();
+	private final Runnable scoreSetter = new Runnable() {
+	      public void run() {
+	    	  setScore(score);
+	       }
+	    };
 	
 	public GameActivity(){
 		logger.log("constructor call");
-		this.handler = new Handler();
 	}
 	
 	@Override
@@ -92,13 +97,10 @@ public class GameActivity extends ActionBarActivity implements GameListener, Acc
 	}
 
 	@Override
-	public void OnGameChanged(final GameInfo gameInfo) {
-		this.playground.OnGameChanged(gameInfo);
-		this.handler.post(new Runnable() {
-		      public void run() {
-		    	  setScore(gameInfo.score);
-		       }
-		    });
+	public void OnGameChanged(GameInfo gameInfo) {
+		this.playground.OnGameChanged(gameInfo);	
+		//this.setScore(gameInfo.score);
+		this.handler.post(this.scoreSetter);
 	}
 
 	@Override

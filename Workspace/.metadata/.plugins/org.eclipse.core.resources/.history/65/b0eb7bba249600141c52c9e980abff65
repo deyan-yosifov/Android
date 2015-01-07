@@ -82,33 +82,7 @@ public class BallMovementTask extends TimerTask {
 	
 	private void moveStraight(float distance){
 		Ball ball = this.game.ball;
-		Target target = this.game.target;
-		PointF startPosition = ball.position;
-		PointF direction = Algebra.getUnitVector(ball.speed);
-		PointF endPosition = Algebra.add(ball.position, Algebra.multiply(distance, direction));
-		ball.position = endPosition;		
-		
-		boolean isTargetHit = false;
-		float hitDistance = ball.radius + target.radius;
-		float targetProjection = Algebra.dotProduct(Algebra.substract(target.position, startPosition), direction);
-		if(0 <= targetProjection && targetProjection <= distance){
-			PointF projectionPoint = Algebra.add(startPosition, Algebra.multiply(targetProjection, direction));
-			float projectionDistance = Algebra.getLength(Algebra.substract(projectionPoint, target.position));			
-			if(projectionDistance <= hitDistance){
-				isTargetHit = true;
-			}
-		}
-		else if(Algebra.getLength(Algebra.substract(target.position, startPosition)) <= hitDistance){
-			isTargetHit = true;
-		}
-		else if(Algebra.getLength(Algebra.substract(target.position, endPosition)) <= hitDistance){
-			isTargetHit = true;
-		}
-		
-		if(isTargetHit){
-			this.game.score += Game.scoreDelta;
-			this.game.moveTargetRandomly();
-		}
+		ball.position = Algebra.add(ball.position, Algebra.multiply(distance, Algebra.getUnitVector(ball.speed)));
 	}
 	
 	private CollisionInfo findNextCollision(){		

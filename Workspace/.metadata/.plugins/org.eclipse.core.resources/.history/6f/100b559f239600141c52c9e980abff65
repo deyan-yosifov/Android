@@ -16,7 +16,6 @@ public class Game {
 	private GameListener gameListener;
 	private PointF accelerationAccumolator;
 	
-	public static final int scoreDelta = 10;
 	public static final float maxSpeed = 10;
 	public static final long gameTimerInterval = 100;
 	public final RectF rectangle;
@@ -117,7 +116,7 @@ public class Game {
 		this.moveTargetRandomly();
 	}
 	
-	public void moveTargetRandomly(){
+	private void moveTargetRandomly(){
 		float randomX = (float)Math.random();
 		float randomY = (float)Math.random();
 		

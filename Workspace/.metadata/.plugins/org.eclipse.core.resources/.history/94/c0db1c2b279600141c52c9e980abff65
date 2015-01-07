@@ -8,7 +8,6 @@ import android.graphics.Matrix;
 import android.graphics.PointF;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
@@ -22,12 +21,10 @@ public class GameActivity extends ActionBarActivity implements GameListener, Acc
 	private PlaygroundView playground;
 	private Game game;
 	private int score;
-	private TextView scoreTextView;	
-	private final Handler handler;
+	private TextView scoreTextView;
 	
 	public GameActivity(){
 		logger.log("constructor call");
-		this.handler = new Handler();
 	}
 	
 	@Override
@@ -92,13 +89,9 @@ public class GameActivity extends ActionBarActivity implements GameListener, Acc
 	}
 
 	@Override
-	public void OnGameChanged(final GameInfo gameInfo) {
-		this.playground.OnGameChanged(gameInfo);
-		this.handler.post(new Runnable() {
-		      public void run() {
-		    	  setScore(gameInfo.score);
-		       }
-		    });
+	public void OnGameChanged(GameInfo gameInfo) {
+		this.playground.OnGameChanged(gameInfo);	
+		this.setScore(gameInfo.score);
 	}
 
 	@Override

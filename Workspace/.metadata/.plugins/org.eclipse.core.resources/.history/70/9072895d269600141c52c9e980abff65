@@ -105,10 +105,6 @@ public class BallMovementTask extends TimerTask {
 			isTargetHit = true;
 		}
 		
-		if(isTargetHit){
-			this.game.score += Game.scoreDelta;
-			this.game.moveTargetRandomly();
-		}
 	}
 	
 	private CollisionInfo findNextCollision(){		
