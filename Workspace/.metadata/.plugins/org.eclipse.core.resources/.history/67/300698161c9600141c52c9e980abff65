@@ -7,13 +7,11 @@ public class GameInfo {
 	public final ICircleObject ball;
 	public final ICircleObject target;
 	public final RectF playground;
-	public final int score;
 	
 	public GameInfo(Game game){
 			this.ball = GameInfo.Copy(game.ball);
 			this.target = GameInfo.Copy(game.target);
 			this.playground = GameInfo.Copy(game.rectangle);
-			this.score = game.score;
 	}
 	
 	private static ICircleObject Copy(final ICircleObject circle){

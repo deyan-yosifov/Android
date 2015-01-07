@@ -11,17 +11,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 public class GameActivity extends ActionBarActivity implements GameListener, AccelerometerListener {
 	
 	private static final Logger logger = new Logger("GameActivity");
-	private static final double noise = 0.1;
+	private static final double noise = 0.6;
 	private AccelerometerManager accelerometerManager;
 	private PlaygroundView playground;
 	private Game game;
-	private int score;
-	private TextView scoreTextView;
 	
 	public GameActivity(){
 		logger.log("constructor call");
@@ -33,24 +30,14 @@ public class GameActivity extends ActionBarActivity implements GameListener, Acc
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game);
 		
-		this.scoreTextView = (TextView) this.findViewById(R.id.score_view);
 		ViewGroup viewGroup = (ViewGroup) this.findViewById(R.id.playground_owner);
 		this.playground = new PlaygroundView(this);
 		viewGroup.addView(this.playground);
 		
 		this.game = GameApplication.getGame();
-		this.setScore(-1);
-		this.setScore(game.score);
 		
 		SensorManager sensorManager = (SensorManager) getSystemService(this.SENSOR_SERVICE);		
 		this.accelerometerManager = new AccelerometerManager(this, sensorManager);
-	}
-	
-	private void setScore(int score){
-		if(this.score != score){
-			this.score = score;
-			this.scoreTextView.setText("Score: " + this.score);
-		}
 	}
 
 	@Override
@@ -90,18 +77,25 @@ public class GameActivity extends ActionBarActivity implements GameListener, Acc
 
 	@Override
 	public void OnGameChanged(GameInfo gameInfo) {
-		this.playground.OnGameChanged(gameInfo);	
-		this.setScore(gameInfo.score);
+		this.playground.OnGameChanged(gameInfo);		
 	}
 
 	@Override
 	public void onAccelerometerChanged(AccelerometerEvent accelerometerEvent) {
 		float ax = (float)accelerometerEvent.linearAcceleration.x;
 		float ay = (float)accelerometerEvent.linearAcceleration.y;
-		PointF acceleration = new PointF(ax, ay);
+		logger.log("ax: " + ax + "; ay: " + ay);
 		
-		if(Algebra.getLength(acceleration) > noise){
-			this.game.accelerate(acceleration);
+		if(Algebra.getLength(new PointF(ax, ay)) > noise){
+			float angle = GameApplication.getRotationAngle();
+			
+			Matrix matrix = new Matrix();
+			matrix.postRotate(angle);
+			float[] point = { ax, ay };			
+			matrix.mapPoints(point);
+			PointF orientedAcceleration = new PointF(point[0], point[1]);
+			logger.log("orientedAcceleration: " + orientedAcceleration);
+			this.game.accelerate(orientedAcceleration);
 		}
 	}
 }

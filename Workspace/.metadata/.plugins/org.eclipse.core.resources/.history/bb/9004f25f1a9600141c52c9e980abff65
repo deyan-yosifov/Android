@@ -9,19 +9,18 @@ import android.graphics.RectF;
 
 public class Game {
 	private static final Logger logger = new Logger("Game class");
-	private static final float actualDistanceInMeters = 10;
+	private static final float actualDistanceInMeters = 20;
 	private final Timer timer;	
 	private final TimerTask timerTask;
 	private boolean isPlaying;
 	private GameListener gameListener;
 	private PointF accelerationAccumolator;
 	
-	public static final float maxSpeed = 15;
-	public static final long gameTimerInterval = 100;
+	public static final float maxSpeed = 5;
+	public static final long gameTimerInterval = 500;
 	public final RectF rectangle;
 	public final Ball ball;
 	public final Target target;	
-	public int score;
 		
 	public Game(float screenRatio){
 		float width, height;
@@ -45,7 +44,6 @@ public class Game {
 		this.gameListener = null;
 		this.isPlaying = false;
 		this.accelerationAccumolator = new PointF();
-		this.score = 0;
 		
 		this.initializePlayground();
 	}

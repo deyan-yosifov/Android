@@ -33,9 +33,8 @@ public class BallMovementTask extends TimerTask {
 		PointF acceleration = this.game.popAcceleration();
 		
 		if(!Algebra.isZero(acceleration)){
-//			PointF deltaSpeed = Algebra.multiply(time * 10, acceleration);
-//			PointF speed = Algebra.add(ball.speed, deltaSpeed);
-			PointF speed = Algebra.multiply(Algebra.getLength(ball.speed), Algebra.getUnitVector(acceleration));
+			PointF deltaSpeed = Algebra.multiply(time * 10, acceleration);
+			PointF speed = Algebra.add(ball.speed, deltaSpeed);
 			
 			if(Algebra.getLength(speed) > Game.maxSpeed){
 				speed = Algebra.multiply(Game.maxSpeed, Algebra.getUnitVector(speed));
