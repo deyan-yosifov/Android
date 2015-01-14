@@ -4,7 +4,7 @@ import android.graphics.Color;
 import android.graphics.PointF;
 
 public class Ball implements ICircleObject {
-	private static final PointF defaultSpeed = new PointF(3f, 3f);
+	private static final PointF defaultSpeed = new PointF(0.3f, 0.3f);
 	public PointF position;
 	public float radius;
 	public PointF speed;

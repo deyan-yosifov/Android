@@ -49,13 +49,10 @@ public class MainActivity extends ActionBarActivity {
         
     public void startAccelerometerMonitor(View view) {    	
     	String header = "Monitor accelerometer?";
-    	String question = "Monitoring the accelerometer is only for test purposes.";
+    	String question = "By monitoring accelerometer you can check if the game detects your sensor and what are the exact accelerometer values that it gets. Do you want to monitor accelerometer?";
     	MessageBoxHelper.Alert(this, question, header, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {                 
                 Intent intent = new Intent(MainActivity.this, AccelerometerMonitorActivity.class);
-//                EditText editText = (EditText) findViewById(R.id.edit_message);
-//                String message = editText.getText().toString();
-//                intent.putExtra(EXTRA_MESSAGE, message);
                 startActivity(intent);
             }
          }); 

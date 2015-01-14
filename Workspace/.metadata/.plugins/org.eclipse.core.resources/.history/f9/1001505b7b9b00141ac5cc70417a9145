@@ -1,0 +1,165 @@
+package com.dipiuay.bouncingballgame;
+
+import java.util.TimerTask;
+
+import android.graphics.PointF;
+import android.graphics.RectF;
+
+public class BallMovementTask extends TimerTask {
+
+	private class CollisionInfo{
+		public float distance;
+		public PointF collisionNormal;
+	}
+	
+	private static final Logger logger = new Logger("BallMovementTask");
+	private final Game game;
+	
+	public BallMovementTask(Game game){
+		this.game = game;
+	}
+	
+	@Override
+	public void run() {
+		float time = Game.gameTimerInterval / 1000f;
+		Ball ball = this.game.ball;
+		float distance = Algebra.getLength(ball.speed) * time;
+		
+		if(!Algebra.isZero(distance)){
+			this.moveAndBounce(distance);
+		}
+		
+		PointF acceleration = this.game.popAcceleration();
+		
+		if(!Algebra.isZero(acceleration)){
+			PointF deltaSpeed = Algebra.multiply(time * 10, acceleration);
+			PointF speed = Algebra.add(ball.speed, deltaSpeed);
+			
+			if(Algebra.getLength(speed) > Game.maxSpeed){
+				speed = Algebra.multiply(Game.maxSpeed, Algebra.getUnitVector(speed));
+			}			
+			
+			ball.speed = speed;
+		}
+	}
+	
+	private void moveAndBounce(float distance){		
+		while(!Algebra.isZero(distance)){
+			CollisionInfo collision = this.findNextCollision();
+			
+			if(Algebra.areEqual(collision.distance, distance)){
+				this.moveStraight(collision.distance);
+				this.game.ball.speed = BallMovementTask.bounceSpeed(this.game.ball.speed, collision);
+				distance = 0;
+			}
+			else if(collision.distance < distance){
+				this.moveStraight(collision.distance);
+				this.game.ball.speed = BallMovementTask.bounceSpeed(this.game.ball.speed, collision);
+				distance -= collision.distance;
+				
+			}
+			else{
+				this.moveStraight(distance);
+				distance = 0;
+			}			
+			
+			this.game.onChange();
+		}
+	}
+	
+	private static PointF bounceSpeed(PointF speed, CollisionInfo info){
+		if(Algebra.isZero(info.collisionNormal.x)){
+			return new PointF(speed.x, -speed.y);
+		} 
+		else if(Algebra.isZero(info.collisionNormal.y)){
+			return new PointF(-speed.x, speed.y);
+		}
+		
+		throw new UnsupportedOperationException("Only horizonal and vertical ball bouncing is implemented!");
+	}
+	
+	private void moveStraight(float distance){
+		Ball ball = this.game.ball;
+		Target target = this.game.target;
+		PointF startPosition = ball.position;
+		PointF direction = Algebra.getUnitVector(ball.speed);
+		PointF endPosition = Algebra.add(ball.position, Algebra.multiply(distance, direction));
+		ball.position = endPosition;		
+		
+		boolean isTargetHit = false;
+		float hitDistance = ball.radius + target.radius;
+		float targetProjection = Algebra.dotProduct(Algebra.substract(target.position, startPosition), direction);
+		if(0 <= targetProjection && targetProjection <= distance){
+			PointF projectionPoint = Algebra.add(startPosition, Algebra.multiply(targetProjection, direction));
+			float projectionDistance = Algebra.getLength(Algebra.substract(projectionPoint, target.position));			
+			if(projectionDistance <= hitDistance){
+				isTargetHit = true;
+			}
+		}
+		else if(Algebra.getLength(Algebra.substract(target.position, startPosition)) <= hitDistance){
+			isTargetHit = true;
+		}
+		else if(Algebra.getLength(Algebra.substract(target.position, endPosition)) <= hitDistance){
+			isTargetHit = true;
+		}
+		
+		if(isTargetHit){
+			this.game.score += Game.scoreDelta;
+			this.game.moveTargetRandomly();
+		}
+	}
+	
+	private CollisionInfo findNextCollision(){		
+		
+		RectF rect = this.game.rectangle;
+		float d = this.game.ball.radius;
+		PointF position = this.game.ball.position;
+		PointF direction = Algebra.getUnitVector(game.ball.speed);
+		RectF offsetRectangle = new RectF(rect.left + d, rect.top + d, rect.right - d, rect.bottom - d);
+		
+		CollisionInfo info = new CollisionInfo();
+		info.distance = Float.MAX_VALUE;
+		
+		float distance = this.collidePointWithWall(offsetRectangle.left, 1, position.x, direction.x);		
+		if(distance < info.distance){
+			info.distance = distance;
+			info.collisionNormal = new PointF(1, 0);
+		}
+		
+		distance = this.collidePointWithWall(offsetRectangle.right, -1, position.x, direction.x);		
+		if(distance < info.distance){
+			info.distance = distance;
+			info.collisionNormal = new PointF(-1, 0);
+		}
+		
+		distance = this.collidePointWithWall(offsetRectangle.top, 1, position.y, direction.y);		
+		if(distance < info.distance){
+			info.distance = distance;
+			info.collisionNormal = new PointF(0, 1);
+		}
+		
+		distance = this.collidePointWithWall(offsetRectangle.bottom, -1, position.y, direction.y);		
+		if(distance < info.distance){
+			info.distance = distance;
+			info.collisionNormal = new PointF(0, -1);
+		}		
+
+		return info;
+	}
+	
+	private float collidePointWithWall(float wallCoordinate, float wallNormalCoordinate, float positionCoordinate, float directionCoordinate){
+		float distance = (wallCoordinate - positionCoordinate) / directionCoordinate;
+		
+		if(distance < 0)
+		{
+			return Float.MAX_VALUE;
+		}
+		
+		if(Algebra.isZero(distance) && (wallNormalCoordinate * directionCoordinate) > 0){			
+			return Float.MAX_VALUE;
+		}
+		
+		return distance;
+	}
+
+}

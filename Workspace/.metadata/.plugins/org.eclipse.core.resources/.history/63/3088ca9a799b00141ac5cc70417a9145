@@ -1,0 +1,127 @@
+package com.dipiuay.bouncingballgame;
+
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import android.graphics.PointF;
+import android.graphics.RectF;
+
+public class Game {
+	private static final Logger logger = new Logger("Game class");
+	private static final float actualDistanceInMeters = 10;
+	private Timer timer;	
+	private TimerTask timerTask;
+	private boolean isPlaying;
+	private GameListener gameListener;
+	private PointF accelerationAccumolator;
+	
+	public static final int scoreDelta = 10;
+	public static final float maxSpeed = 1.2;
+	public static final long gameTimerInterval = 100;
+	public final RectF rectangle;
+	public final Ball ball;
+	public final Target target;	
+	public int score;
+		
+	public Game(float screenRatio){
+		float width, height;
+		
+		if(screenRatio < 1){
+			width = actualDistanceInMeters;
+			height = width / screenRatio;
+		}
+		else{
+			height = actualDistanceInMeters;
+			width = height * screenRatio;
+		}
+		this.rectangle = new RectF(0, 0, width, height);
+		this.ball = new Ball();
+		this.target = new Target();
+		
+		logger.log("New Game with size: (" + this.width() + ", " + this.height() + ")");
+		
+		this.gameListener = null;
+		this.isPlaying = false;
+		this.accelerationAccumolator = new PointF();
+		this.score = 0;
+		
+		this.initializePlayground();
+	}
+	
+	public void accelerate(PointF acceleration){
+		this.accelerationAccumolator = Algebra.add(this.accelerationAccumolator, acceleration);		
+	}
+	
+	public PointF popAcceleration(){
+		PointF acceleration = this.accelerationAccumolator;
+		this.accelerationAccumolator = new PointF();
+		
+		return acceleration;
+	}
+	
+	public void play(GameListener listener){
+		if(!this.isPlaying){
+			this.isPlaying = true;			
+			this.registerListener(listener);
+			
+			this.timerTask = new BallMovementTask(this);
+			this.timer = new Timer();			
+			this.timer.schedule(this.timerTask, new Date(), Game.gameTimerInterval);
+		}
+	}
+	
+	public void pause(){
+		if(this.isPlaying){	
+			this.unregisterListener();
+			this.timerTask.cancel();
+			this.timer.cancel();	
+			this.timer.purge();
+			this.timerTask = null;
+			this.timer = null;
+			
+			this.isPlaying = false;
+		}
+	}
+	
+	public void onChange(){
+		if(this.gameListener != null){
+			this.gameListener.OnGameChanged(new GameInfo(this));
+		}
+	}
+	
+	private void registerListener(GameListener listener){
+		this.gameListener = listener;
+	}
+	
+	private void unregisterListener(){
+		this.gameListener = null;
+	}
+	
+	public float width() {
+		return this.rectangle.width();	
+	}
+	
+	public float height() {
+		return this.rectangle.height();	
+	}
+	
+	private void initializePlayground(){
+		float minimalSize = Math.min(this.width(), this.height());
+		
+		this.ball.radius = minimalSize / 10;
+		this.ball.position.x = this.width() * 0.5f;
+		this.ball.position.y = this.height() * 0.8f;
+		
+		this.target.radius = this.ball.radius / 2;
+		this.moveTargetRandomly();
+	}
+	
+	public void moveTargetRandomly(){
+		float randomX = (float)Math.random();
+		float randomY = (float)Math.random();
+		
+		this.target.position.x = target.radius + (this.width() - 2 * target.radius) * randomX;
+		this.target.position.y = target.radius + (this.height() - 2 * target.radius) * randomY;		
+	}
+}

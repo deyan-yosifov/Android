@@ -9,7 +9,7 @@ import android.graphics.RectF;
 
 public class Game {
 	private static final Logger logger = new Logger("Game class");
-	private static final float actualDistanceInMeters = 10;
+	private static final float actualDistanceInMeters = 1;
 	private Timer timer;	
 	private TimerTask timerTask;
 	private boolean isPlaying;
@@ -17,7 +17,7 @@ public class Game {
 	private PointF accelerationAccumolator;
 	
 	public static final int scoreDelta = 10;
-	public static final float maxSpeed = 12;
+	public static final float maxSpeed = 1.2f;
 	public static final long gameTimerInterval = 100;
 	public final RectF rectangle;
 	public final Ball ball;
