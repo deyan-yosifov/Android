@@ -38,6 +38,7 @@ public class PlaygroundView extends View {
 			
 		this.width = w;
 		this.height = h;
+		logger.log("OnSizeChanged size: (" + this.width + "; " + this.height + ")");
 
 		GameInfo game = this.lastGameInfo;
 		if(game != null){		
@@ -47,6 +48,7 @@ public class PlaygroundView extends View {
 
 	@Override
 	protected void onDraw(Canvas canvas) {
+		logger.log("onDraw");
 
 		GameInfo game = this.lastGameInfo;
 		
@@ -133,5 +135,7 @@ public class PlaygroundView extends View {
 		if(!this.isPlaygroundTransformationCaclulated){		
 			this.calculatePlaygroundTransformation(gameInfo.playground);		
 		}
+		
+		logger.log("OnGameChanged");
 	}	
 }

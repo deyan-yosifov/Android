@@ -39,7 +39,7 @@ public class Game {
 		this.ball = new Ball();
 		this.target = new Target();
 		
-		//logger.log("New Game with size: (" + this.width() + ", " + this.height() + ")");
+		logger.log("New Game with size: (" + this.width() + ", " + this.height() + ")");
 		
 		this.gameListener = null;
 		this.isPlaying = false;

@@ -27,12 +27,13 @@ public class GameActivity extends ActionBarActivity implements GameListener, Acc
 	private final Handler handler;
 	
 	public GameActivity(){
+		logger.log("constructor call");
 		this.handler = new Handler();
 	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		//logger.log("OnCreate");
+		logger.log("OnCreate");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game);
 		
@@ -65,7 +66,7 @@ public class GameActivity extends ActionBarActivity implements GameListener, Acc
 
 	@Override
 	protected void onResume() {
-		//logger.log("onResume");
+		logger.log("onResume");
 		super.onResume();
 		this.game.play(this);
 		this.accelerometerManager.startListening();
@@ -74,7 +75,7 @@ public class GameActivity extends ActionBarActivity implements GameListener, Acc
 
 	@Override
 	protected void onPause() {
-		//logger.log("onPause");
+		logger.log("onPause");
 		super.onPause();
 		this.game.pause();
 		this.accelerometerManager.stopListening();

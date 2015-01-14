@@ -72,6 +72,7 @@ public class GameApplication extends Application {
 	
 	@Override
 	public void onCreate() {
+		logger.log("OnCreate");
 		super.onCreate();
 		this.display = ((WindowManager) this.getSystemService(WINDOW_SERVICE)).getDefaultDisplay();
 		startNewGame();

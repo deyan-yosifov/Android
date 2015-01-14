@@ -27,12 +27,13 @@ public class GameActivity extends ActionBarActivity implements GameListener, Acc
 	private final Handler handler;
 	
 	public GameActivity(){
+		logger.log("constructor call");
 		this.handler = new Handler();
 	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		//logger.log("OnCreate");
+		logger.log("OnCreate");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game);
 		

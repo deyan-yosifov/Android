@@ -123,12 +123,14 @@ public class AccelerometerMonitorActivity extends Activity implements Accelerome
 
 	@Override
 	protected void onResume() {
+		logger.log("OnResume");
 		super.onResume();
 		this.accelerometerManager.startListening();
 	}
 	
 	@Override
 	protected void onPause() {
+		logger.log("OnPause");
 		super.onPause();
 		this.accelerometerManager.stopListening();
 	}

@@ -16,10 +16,12 @@ public class GameApplication extends Application {
 	private Game game;
 	
 	public GameApplication(){
+		logger.log("Constructor call");
 		GameApplication.instance = this;
 	}
 	
 	public static Game startNewGame(){
+		logger.log("startNewGame");
 		Point point = getDisplaySize();
 		int rotation = getRotation();		
 		if(rotation == Surface.ROTATION_90 || rotation == Surface.ROTATION_270){
@@ -72,6 +74,7 @@ public class GameApplication extends Application {
 	
 	@Override
 	public void onCreate() {
+		logger.log("OnCreate");
 		super.onCreate();
 		this.display = ((WindowManager) this.getSystemService(WINDOW_SERVICE)).getDefaultDisplay();
 		startNewGame();
